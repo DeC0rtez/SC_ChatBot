@@ -12,7 +12,7 @@
 * No installation required. All features of the code can be used directly from a .clj file in a REPL.
 
 ## Support
-* All relevant commands and features will be covered in the repository wiki. Currently WIP.
+* All relevant commands and features will be covered in the repository wiki. Currently **WIP**.
 * Alternatively, assistance and information about the project is available in our [discord](https://discord.gg/XRJ2GbMf).
 
 ## License
