@@ -2,7 +2,7 @@
 A group project for the 2004 Symbolic Computation class instructed by Petr Švarný at Prague College.
 
 ## Objective
-To create a basic ChatBot in Clojure which can be adapted expanded upon according to requirements.
+To create a basic ChatBot in Clojure which can be adapted and expanded upon according to requirements.
 
 ## Requirements
 * Working Clojure REPL on system
