@@ -22,7 +22,7 @@
 - [Daniel De Corte](https://github.com/DeC0rtez)
 - [Artem Pyatigorov](https://github.com/Lucius1010011010)
 - [Vladyslav Koskovetskyi](https://github.com/Vladyslav48)
-- Nikita Druzhkov
+- [Nikita Druzhkov](https://github.com/ndr-power)
 
 ## Supervisor
 - [Petr Švarný](https://github.com/svarnypetr)
