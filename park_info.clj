@@ -297,15 +297,102 @@
        
     }
     def Riegrovy_sady{
+        ;---Basic Info---
+        :food "yes"
+        :food_extra "Restaurant: Versus (tel: +420 222 717 247)"
+        :toilet "yes"
+        :toilet_extra "in restaurants and portable toilet by playground"
+        :POIs "yes"  ;POI refers to Point of Interest
+        :POI1 "1920s Outlook tower"
+        :POI2 "1840 monolith"
+        :POI3 "Captivating view of Prague"
+        :POI4 "Dogs allowed"
+        ;---Children and Sport---
+        :bike_path "yes"
+        :skating "yes"
+        :sports_field "Yes - Sokol Vinohrady"
+        :playground "yes, by the restaurant"
+        ;---Directions---
+        :public_transport "
+        metro: Jiřího z Poděbrad (Line A)
+        stop: Na Smetance - bus: #135
+        stop: Italská/ Vinohradská Tržnice - tram: #11"
+        :GPS_coords "50°4'50.659" N, 14°26'26.287" E"
+        :parking "no"
+        :parking_extra "n/a"
+        ;---Additional Information---
+        :path_type "asphalt"
+        :administered_by1 "Municipality Prague 2"
+        :opening_hours "open year-round"
+        ;---Map---
+        :map_url "https://www.praha.eu/public/a3/62/48/184344_4_riegrovy_sady_mapa.pdf"      
        
     }
     def Stromovka{
+        ;---Basic Info---
+        :food "yes"
+        :food_extra "restaurant Staročeská rychta na Výstavišti"
+        :toilet "yes"
+        :toilet_extra "within nearby restaurants"
+        :POIs "yes"  ;POI refers to Point of Interest
+        :POI1 "Suitable for children and tourists"
+        :POI2 "Prague ZOO and Botanic garden nearby"
+        :POI3 "Natural attractions"
+        :POI4 "Dogs allowed"
+        :POI5 "Štefáník Planet Observatory"
+        :POI6 "Prague exhibition grouns"
+        ;---Children and Sport---
+        :bike_path "yes"
+        :skating "yes"
+        :sports_field "Yes - tennis courts at TK Sparta Prague"
+        :playground "yes, 2"
+        ;---Directions---
+        :public_transport "
+        stop: Výstaviště - trams: #5, #12, #14, #15, #17, #53, #54
+        stop: Sibiřské náměstí - bus: #131
+        steamboat: RAŠÍNOVO NÁBŘEŽÍ"
+        :GPS_coords "50˚ 6' 27.80" N 14˚ 25' 12.53" E"
+        :parking "yes"
+        :parking_extra "by the Exhibition grounds or in Bubeneč"
+        ;---Additional Information---
+        :path_type "asphalt, threshing"
+        :administered_by1 "Prague City"
+        :opening_hours "open year-round"
+        ;---Map---
+        :map_url "https://www.praha.eu/public/9e/a/ad/184253_4_stromovka_web.pdf"     
        
-    }
-    def Vojanovy_sady{
-       
-    }
+
     def Vysehrad{
+        ;---Basic Info---
+        :food "yes"
+        :food_extra "Café Citadela, Café na Hradbách, restuarant Rio´s Vyšehrad, restaurant U dělové koule (tel. +420 224 919 970)"
+        :toilet "yes"
+        :toilet_extra "n/a"
+        :POIs "yes"  ;POI refers to Point of Interest
+        :POI1 "Natural & Cultural heritage site"
+        :POI2 "suitable for family trips with children"
+        :POI3 "Beautiful view of Prague"
+        :POI4 "Museum"
+        :POI5 "Slavín cemetary for significant persons"
+        ;---Children and Sport---
+        :bike_path "yes"
+        :skating "no"
+        :sports_field "Yes - tennis courts. (tel: 606 650 717, 606 500 604)"
+        :playground "Yes, by St. Martin chapel, Mr. Trnka playpen, by entrance to Gorlice hall"
+        ;---Directions---
+        :public_transport "
+        metro: Vyšehrad (Line C)
+        stop: Podolská Vodárna - trams: #3, #16, #17, #21, #52"
+        :GPS_coords "50°3'46.66" N, 14°25'22.75" E"
+        :parking "yes"
+        :parking_extra "underground parking of Prague Congress Centre, or in Na Topolce street"
+        ;---Additional Information---
+        :path_type "paved, threshing"
+        :administered_by1 "Natural Heritage Site - Prague City"
+        :opening_hours "open year-round"
+        ;---Map---
+        :map_url "https://www.praha.eu/public/9e/b2/d0/184274_4_vysehrad_mapa.pdf"     
+       
        
     }
 )
