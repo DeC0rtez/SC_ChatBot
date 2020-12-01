@@ -92,9 +92,9 @@
     def Kampa{
         ;---Basic Info---
         :food true
-        :food_extra "restaurant: Rybí Restaurace,
+        :food_extra "restaurant: Rybí Restaurace (www.rybklub.cz),
         café: Mlýnská (tel. +420 608 444 490)
-        restaurant/café : Sovovy Mlýny"
+        restaurant/café : Sovovy Mlýny (http://www.sovovymlyny.com/)"
         :toilet true
         :toilet_extra nil
         :POIs "View of the river, Sovovy Mlýny gallery, Čertovka, Charles Bridge, Werich House, heritage trees"
@@ -124,7 +124,7 @@
     def Kinskeho_zahrada{
         ;---Basic Info---
         :food true
-        :food_extra "café in Musaion museum of natural sciences"
+        :food_extra "café in Musaion museum of natural sciences (www.nm.cz)"
         :toilet true
         :toilet_extra nil
         :POIs "Enjoyable location for a walk with children, Quiet and relaxing space in the center of town, Musaion Museum of Natural Sciences, decorative ponds, natural attraction - Petřín rock formations"
@@ -151,7 +151,7 @@
     def Klamovka{
         ;---Basic Info---
         :food true
-        :food_extra "restaurant & club Klamovka"
+        :food_extra "restaurant (www.zahradnirestaurace.cz) & club Klamovka (www.klubklamovka.cz)"
         :toilet true
         :toilet_extra "in the restaurant and club"
         :POIs "Historically significant sights, art gallery, musical club with restaurant in garden, playground for small children"
@@ -179,7 +179,7 @@
     def Ladronka{
         ;---Basic Info---
         :food true
-        :food_extra "restaurant Ladronka"
+        :food_extra "restaurant Ladronka (www.ladronka.com)"
         :toilet true
         :toilet_extra "in the restaurant"
         :POIs "Large area suited for free time activities and relaxation for all age categories, year-long: musical performances and social events, suited for a day-long stay"
@@ -244,7 +244,7 @@
     def Petrin{
         ;---Basic Info---
         :food true
-        :food_extra "Restaurants: Nebozízek, Petřínské terasy, Outlook Tower buffet, Peklo, Bella Vista"
+        :food_extra "Restaurants: Nebozízek (www.nebozizek.cz), Petřínské terasy (www.petrinsketerasy.cz), Outlook Tower buffet, Peklo (www.peklo.com), Bella Vista (www.bella-vista.cz"
         :toilet true
         :toilet_extra "in restaurants and by outlook tower"
         :POIs "Suitable for tourists and families with small children, accessible on foot or by cablecar, Outlook tower, Mirror maze, Astronomy tower, Mineshafts, Fruit orchards"
@@ -308,7 +308,7 @@
     def Stromovka{
         ;---Basic Info---
         :food true
-        :food_extra "restaurant Staročeská rychta na Výstavišti"
+        :food_extra "restaurant Staročeská rychta na Výstavišti (www.staroceskarychta.cz)"
         :toilet true
         :toilet_extra "within nearby restaurants"
         :POIs "Suitable for children and tourists, Prague ZOO and Botanic Garden nearby, Natural attractions, Štefáník Planet Observatory, Prague exhibition grounds"
@@ -338,7 +338,7 @@
     def Vysehrad{
         ;---Basic Info---
         :food true
-        :food_extra "Café Citadela, Café na Hradbách, restuarant Rio´s Vyšehrad, restaurant U dělové koule (tel. +420 224 919 970)"
+        :food_extra "Café Citadela, Café na Hradbách, restuarant Rio´s Vyšehrad (www.riorestaurant.cz), restaurant U dělové koule (tel. +420 224 919 970)"
         :toilet true
         :toilet_extra nil
         :POIs "Natural & Cultural heritage site, suitable for family trips with children, beautiful view of prague, musem, Slavín cemetary for significant persons"
