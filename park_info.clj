@@ -25,7 +25,7 @@
         :opening_hours "April-October: 09:00-18:00, November-March: 09:30-16:00"
         ;---Map---
         :map_url "https://www.praha.eu/public/fe/bd/6a/184189_4_bertramka_mapa.pdf"
-        
+
     }
     def Frantiskanska_Zahrada{
         ;---Basic Info---
@@ -58,9 +58,9 @@
     def Obora_Hvezda{
         ;---Basic Info---
         :food true
-        :food_extra "During Summer Season on the premises of the Villa (www.pamatniknarodnihopisemnictvi.cz), tel: 235 357 938,
+        :food_extra "During Summer Season on the premises of the Villa (www.pamatniknarodnihopisemnictvi.cz), tel:. +420 235 357 938,
         or at Libocká street, restaurant U Holečků, www.uholecku.cz,
-        or at Libocká studna, tel.: 420 777 836 966,
+        or at Libocká studna, tel. +420 777 836 966,
         alternatively at Petřiny"
         :toilet true
         :toilet_extra "Portable toilets on the premises, during summer season toilets are also available in the villa"
@@ -93,7 +93,7 @@
         ;---Basic Info---
         :food true
         :food_extra "restaurant: Rybí Restaurace,
-        café: Mlýnská (tel. 608 444 490)
+        café: Mlýnská (tel. +420 608 444 490)
         restaurant/café : Sovovy Mlýny"
         :toilet true
         :toilet_extra nil
@@ -218,9 +218,9 @@
         :skating true
         :sports_field false
         :sports_field_extra: "Not in the park itself, however sports and recreational activities are permitted on grassy segments, additionally:
-        2x skates rentals: Rental #1 - Skala sport tel: +420 605 258 670, Rental #2 - tel: +420 220 571 721
-        General purpose rental: AC Sparta rental - tel: +420 603 938 328,
-        small pitch for football, paid access tennis courts on premises of LTC Slavia - tel: +420 777 789 140"
+        2x skates rentals: Rental #1 - Skala sport tel. +420 605 258 670, Rental #2 - tel. +420 220 571 721
+        General purpose rental: AC Sparta rental - tel. +420 603 938 328,
+        small pitch for football, paid access tennis courts on premises of LTC Slavia - tel. +420 777 789 140"
         :playground true
         :playground_extra "4 in total. By the letenský estate, 2 by the tennis courts, one by Hanavský pavillion"
         ;---Directions---
@@ -277,7 +277,7 @@
     def Riegrovy_sady{
         ;---Basic Info---
         :food true
-        :food_extra "Restaurant: Versus (tel: +420 222 717 247)"
+        :food_extra "Restaurant: Versus (tel. +420 222 717 247)"
         :toilet true
         :toilet_extra "in restaurants and portable toilet by playground"
         :POIs "1920s Outlook tower, 1840 monolith, Captivating view of Prague skyline"
@@ -346,7 +346,7 @@
         :bike_path true
         :skating false
         :sports_field true
-        :sports_field_extra: "tennis courts (tel: 606 650 717, 606 500 604)"
+        :sports_field_extra: "tennis courts (tel. +420 606 650 717, +420 606 500 604)"
         :playground true
         :playground_extra "by St. Martin chapel, Mr. Trnka playpen, by entrance to Gorlice hall"
         ;---Directions---
