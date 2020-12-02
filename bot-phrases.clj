@@ -1,3 +1,4 @@
+;the following are phrases which the bot will pritn before also returning the relevant information.
 (def phrases {
       :food_true {
           :p1 "Dining is available at this park."
@@ -6,8 +7,8 @@
       }
       :food_false {
           :p1 "Unfortunately, there are no restaurants at this park."
-          :p2 "While there are no restaurants at the park, you are sure to find what you need nearby."
-          :p3 "There currently are no restaurants here, but why not head there for a picnic?"
+          :p2 "While there are no restaurants at the park, you are sure to find some nearby."
+          :p3 "There currently are no restaurants here, but why not head there anyway and have a picnic?"
       }
       :toilet_true {
           :p1 "This park has toilets."
@@ -89,3 +90,23 @@
       }
   }
 )
+;helper functions
+
+(defn r_food_true [](
+    (println (:p1 (:food_true phrases)))))
+
+;(def phrases {
+;      :food_true {
+;          :p1 "Dining is available at this park."
+;          :p2 "Don't worry, you will not go hungry at this park!"
+;          :p3 "Yes! I know just the place for you to go eat!"
+;      }})
+;(defn r_food_true [] (
+;    (println (rand-nth (:food_true phrases)))))
+;(r_food_true)
+
+(def p1 "ooo")
+(def p2 "eee")
+(def p3 "aaa")
+(def food [p1 p2 p3])
+(println (rand-nth food))
