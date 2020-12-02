@@ -14,7 +14,8 @@
         :playground false
         :playground_extra: nil
         ;---Directions---
-        :public_transport "Trams #4, #7, #9, #10, #58, #59"
+        :public_transport "
+        stop: Bertramka - trams: #4, #7, #9, #10, #58, #59"
         :GPS_coords "50°4′15.00″ N, 14°23′42.00″ E"
         :parking true
         :parking_extra "OC Smíchov underground parking"
@@ -42,7 +43,9 @@
         :playground true
         :playground_extra: nil
         ;---Directions---
-        :public_transport "Wenceslaus Sq. Trams #3, #9, #14, #24, #51, #52, #54, #55, #56, #58, metro lines: A, B station: Můstek"
+        :public_transport "
+        stop: Wenceslaus Sq. - trams: #3, #9, #14, #24, #51, #52, #54, #55, #56, #58 
+        stop: Můstek - metro line(s): A, B"
         :GPS_coords "50°4′58.8″ N, 14°25′24.8″ E"
         :parking false
         :parking_extra nil
@@ -74,9 +77,9 @@
         :playground_extra: "2 playgrounds"
         ;---Directions---
         :public_transport "
-        stop: Nad Markétou - buses #179, #184, #191, #510, 
-        stop: Libocká - buses #179, #510, 
-        stop: Vypich - trams #15, #22, #25, #57"
+        stop: Nad Markétou - buses: #179, #184, #191, #510, 
+        stop: Libocká - buses: #179, #510, 
+        stop: Vypich - trams: #15, #22, #25, #57"
         :GPS_coords "50°5′2.798″ N, 14°19′45.529″ E"
         :parking true
         :parking_extra "8 parking spots at Libocká gate, free parking in U Hvězdy street"
@@ -94,7 +97,7 @@
         :food true
         :food_extra "restaurant: Rybí Restaurace (www.rybklub.cz),
         café: Mlýnská (tel. +420 608 444 490)
-        restaurant/café : Sovovy Mlýny (http://www.sovovymlyny.com/)"
+        restaurant/café: Sovovy Mlýny (http://www.sovovymlyny.com/)"
         :toilet true
         :toilet_extra nil
         :POIs "View of the river, Sovovy Mlýny gallery, Čertovka, Charles Bridge, Werich House, heritage trees"
@@ -107,8 +110,8 @@
         :playground_extra: "yes, in the vicinity: Community and Maternal centre Kampa"
         ;---Directions---
         :public_transport "
-        stop: Helichova - trams #12, #20, #20, #22, #23, #57 
-        stop: Újezd - trams #6, #9, #22, #23, #57, #58, #59"
+        stop: Helichova - tram:s #12, #20, #20, #22, #23, #57 
+        stop: Újezd - trams: #6, #9, #22, #23, #57, #58, #59"
         :GPS_coords "50°5′16.87″ N, 14°24′14.58″ E"
         :parking false
         :parking_extra nil
@@ -136,7 +139,8 @@
         :playground true
         :playground_extra: "yes, by the Kinských square entrance, nearby Kinských Villa and more under construction"
         ;---Directions---
-        :public_transport "stop: Kobrova - bus #176"
+        :public_transport "
+         stop: Kobrova - bus: #176"
         :GPS_coords "50° 4′ 44.26″ N, 14° 24′ 0.21″ N"
         :parking true
         :parking_extra "OC Smíchov underground parking"
@@ -163,7 +167,8 @@
         :playground true
         :playground_extra "by the garden restaurant"
         ;---Directions---
-        :public_transport "stop: Klamovka - buses #149, #191, #217, - trams #4, #7, #9, #10, #58, #59"
+        :public_transport "
+        stop: Klamovka - buses: #149, #191, #217, - trams: #4, #7, #9, #10, #58, #59"
         :GPS_coords "50°4′17,04″ N, 14°22′39,72″ E"
         :parking false
         :parking_extra nil
@@ -192,8 +197,8 @@
         :playground_extra "by the restaurant and by the Ladronka bus stop"
         ;---Directions---
         :public_transport "
-        stop: U ladronky/ Rozýnova/ Štefkova - bus #191
-        stop: Vypich - buses #108, #174, #180, #191, #I3, - trams: #15, 22, 25, 57"
+        stop: U ladronky/ Rozýnova/ Štefkova - bus: #191
+        stop: Vypich - buses: #108, #174, #180, #191, #I3, - trams: #15, 22, 25, 57"
         :GPS_coords "50°4′47.447″ N, 14°21′52.445″ E"
         :parking true
         :parking_extra "Yes, in streets Tomanova & Skokanská"
@@ -228,7 +233,7 @@
         stop: Letenské Náměstí/ Sparta - trams: #1, #8, #15, #25, #26, #51, #56
         stop: Čechův most - trams: #12, #17, #53
         stop: Chotkovy Sady - trams: #18, #20, #57
-        stop: Hradčanská metro - metro line A"
+        stop: Hradčanská - metro line(s): A"
         :GPS_coords "50°5′41″ N, 14°24′57″ E"
         :parking true
         :parking_extra "Yes, in Kostelní street"
@@ -290,7 +295,7 @@
         :playground_extra "yes, by the restaurant"
         ;---Directions---
         :public_transport "
-        metro: Jiřího z Poděbrad (Line A)
+        stop: Jiřího z Poděbrad - metro line(s): A
         stop: Na Smetance - bus: #135
         stop: Italská/ Vinohradská Tržnice - tram: #11"
         :GPS_coords "50°4′50.659″ N, 14°26′26.287″ E"
@@ -323,7 +328,7 @@
         :public_transport "
         stop: Výstaviště - trams: #5, #12, #14, #15, #17, #53, #54
         stop: Sibiřské náměstí - bus: #131
-        steamboat: RAŠÍNOVO NÁBŘEŽÍ"
+        stop: Rašínovo nábřeží - steamboat"
         :GPS_coords "50˚ 6′ 27.80″ N 14˚ 25′ 12.53″ E"
         :parking true
         :parking_extra "by the Exhibition grounds or in Bubeneč"
@@ -351,7 +356,7 @@
         :playground_extra "by St. Martin chapel, Mr. Trnka playpen, by entrance to Gorlice hall"
         ;---Directions---
         :public_transport "
-        metro: Vyšehrad (Line C)
+        stop: Vyšehrad metro line(s): C
         stop: Podolská Vodárna - trams: #3, #16, #17, #21, #52"
         :GPS_coords "50°3′46.66″ N, 14°25′22.75″ E"
         :parking true
