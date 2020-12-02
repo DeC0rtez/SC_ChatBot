@@ -82,7 +82,7 @@
         :parking_extra "8 parking spots at Libocká gate, free parking in U Hvězdy street"
         ;---Additional Information---
         :dogs false
-        :path_type "Hardened soil, threshing floor"
+        :path_type "hardened soil, threshing floor"
         :administered_by "Museum of Czech Literature, Prague City"
         :opening_hours "park - year long, villa - (April 10:00-17:00, May-September 10:00-18:00, October 10:00-17:00, November-March CLOSED) "
         ;---Map---
@@ -199,7 +199,7 @@
         :parking_extra "Yes, in streets Tomanova & Skokanská"
         ;---Additional Information---
         :dogs true
-        :path_type "paved, threshing & asphalt"
+        :path_type "paved, threshing floor & asphalt"
         :administered_by "Municipality Prague 6"
         :opening_hours "Open year-round"
         ;---Map---
@@ -266,7 +266,7 @@
         :parking_extra "by Strahov stadium"
         ;---Additional Information---
         :dogs nil
-        :path_type "asphalt, concrete, paved, threshing"
+        :path_type "asphalt, concrete, paved, threshing floor"
         :administered_by "Prague City"
         :opening_hours "Petřín & Astronomy Station: open year-round
         Outlook tower: January-March, November - (10:00-18:00), April, September, October - (10:00-19:00), May-August - (10:00-22:00)"
@@ -329,7 +329,7 @@
         :parking_extra "by the Exhibition grounds or in Bubeneč"
         ;---Additional Information---
         :dogs true
-        :path_type "asphalt, threshing"
+        :path_type "asphalt, threshing floor"
         :administered_by "Prague City"
         :opening_hours "open year-round"
         ;---Map---
@@ -358,7 +358,7 @@
         :parking_extra "underground parking of Prague Congress Centre, or in Na Topolce street"
         ;---Additional Information---
         :dogs nil
-        :path_type "paved, threshing"
+        :path_type "paved, threshing floor"
         :administered_by "Natural Heritage Site - Prague City"
         :opening_hours "open year-round"
         ;---Map---
