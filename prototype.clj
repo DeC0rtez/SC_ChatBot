@@ -1,6 +1,6 @@
 (require '[clojure.string :as string])
 
-(def phrases {
+(def phrases { ;example phrases
         :dogs {
             :p1 "Yes, do not hesitate to bring your four-legged friend with you."
             :p2 "Yes, dogs are permitted in the park."
@@ -8,23 +8,16 @@
         :food {
             :p1 "Dining is available at this park."
             :p2 "Don't worry, you will not go hungry at this park!"
-            :p3 "Don't worry, you will not go hungry at this park!"}
-            
-            
-            
-            
-            })
+            :p3 "Don't worry, you will not go hungry at this park!"}})
 
-(defn get_response [p_cat]
+(defn get_response [p_cat] ;get response function that fetches a random response based on keyword
     (def rn (rand-int 4))
     (cond
         (= rn 1) (println (:p1 (p_cat phrases)))
         (= rn 2) (println (:p2 (p_cat phrases)))
         :else (println (:p3 (p_cat phrases)))))
 
-
-
-(defn prototype 
+(defn prototype ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
 [] ; no args
   (println "Hi, I am a Bertramka park guide chatbot. Please ask me about food or dogs at Bertramka. (your input must include words 'food' or 'dogs').") ;1st welcome message
   (loop [input (read-line)] ;takes user input, stores it in variable
