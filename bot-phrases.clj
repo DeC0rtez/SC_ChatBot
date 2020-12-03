@@ -90,23 +90,72 @@
       }
   }
 )
-;helper functions
 
-(defn r_food_true [](
-    (println (:p1 (:food_true phrases)))))
+;below are helper functions, for now they print the first phrase only. 
+;This can be expanded in the future , but currently is not the priority.
+;They shall be called from within the loop when user input is scanned for keywords.
 
-;(def phrases {
-;      :food_true {
-;          :p1 "Dining is available at this park."
-;          :p2 "Don't worry, you will not go hungry at this park!"
-;          :p3 "Yes! I know just the place for you to go eat!"
-;      }})
-;(defn r_food_true [] (
-;    (println (rand-nth (:food_true phrases)))))
-;(r_food_true)
+(defn r_food_true []
+    (println (:p1 (:food_true phrases))))
 
-(def p1 "ooo")
-(def p2 "eee")
-(def p3 "aaa")
-(def food [p1 p2 p3])
-(println (rand-nth food))
+(defn r_food_false []
+    (println (:p1 (:food_false phrases))))
+
+(defn r_toilet_true []
+    (println (:p1 (:toilet_false phrases))))
+
+(defn r_toilet_false []
+    (println (:p1 (:toilet_false phrases))))
+
+(defn r_POI_true []
+    (println (:p1 (:POI_true phrases))))
+
+(defn r_bike_path_true []
+    (println (:p1 (:bike_path_false phrases))))   
+
+(defn r_bike_path_false []
+    (println (:p1 (:bike_path_false phrases))))
+
+(defn r_skating_true []
+    (println (:p1 (:skating_true phrases))))
+
+(defn r_skating_false []
+    (println (:p1 (:skating_false phrases))))
+
+(defn r_sports_field_true []
+    (println (:p1 (:sports_field_true phrases))))
+
+(defn r_sports_field_false []
+    (println (:p1 (:sports_field_false phrases))))
+
+(defn r_playground_true []
+    (println (:p1 (:playground_true phrases))))
+
+(defn r_playground_false []
+    (println (:p1 (:playground_false phrases))))
+
+(defn r_public_transport_true []
+    (println (:p1 (:public_transport_true phrases))))
+
+(defn r_public_transport_false []
+    (println (:p1 (:public_transport_false phrases))))
+
+(defn r_parking_true []
+    (println (:p1 (:parking_true phrases))))
+
+(defn r_parking_false []
+    (println (:p1 (:parking_false phrases))))
+
+(defn r_dogs_true []
+    (println (:p1 (:dogs_true phrases))))
+
+(defn r_dogs_false []
+    (println (:p1 (:dogs_false phrases))))
+
+
+;alternative structure experimentation, not used for now.
+;(def p1 "Hello")
+;(def p2 "Hi")
+;(def p3 "Hey")
+;(def greetings [p1 p2 p3])
+;(println (rand-nth greetings))
