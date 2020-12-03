@@ -1,4 +1,4 @@
-;the following are phrases which the bot will pritn before also returning the relevant information.
+;the following are phrases which the bot will print before also returning the relevant information.
     (def phrases {
         :food_true {
             :p1 "Dining is available at this park."
@@ -26,9 +26,9 @@
             :p3 "You won't be bored here, there is a lot to do!"
         }
         :bike_path_true {
-            :p1 "The park offers bicycle paths."
+            :p1 "The park has bicycle paths."
             :p2 "You can head there on your bike. Make sure to wear a helmet!"
-            :p3 "This location is perfect for an enjoyable cycling session. Drive safe!"
+            :p3 "This location is perfect for an enjoyable cycling session. Ride safe!"
         }
         :bike_path_false {
             :p1 "Unfortunately, cycling is not permitted at this location."
@@ -53,7 +53,7 @@
         :sports_field_false {
             :p1 "Unfortunately, there are no sports facilities here. Do have a look in the surrounding area though, Prague has much to offer."
             :p2 "There are no sports facilities here, but why not go anyway and relax in the nature?"
-            :p3 "There are no specialized sporting grounds here. You may still go there for a run though!"
+            :p3 "There are no specialized sporting grounds here. You can still go there for a run though!"
         }
         :playground_true {
             :p1 "Yes, this location offers a playground. Your children will not be bored here."
@@ -61,7 +61,7 @@
             :p3 "This park provides a playground for your children to entertain themselves at."
         }
         :playground_false {
-            :p1 "Unfrotunately, there isn't a playground at this location."
+            :p1 "Unfortunately, there isn't a playground at this location."
             :p2 "There are no playgrounds here. Make sure to reward your children with a snack if you bring them along."
             :p3 "There currently isn't a playground there."
         }
@@ -71,8 +71,8 @@
             :p3 "Don't worry, hop on a tram or bus, you will be there in no time."
         }
         :public_transport_false {
-            :p1 "Unfrotunately, this location is not reachable by public transport."
-            :p2 "While not accessible by public transport, why note consider a Uber?"
+            :p1 "Unfortunately, this location is not reachable by public transport."
+            :p2 "While not accessible by public transport, why not consider taking a Uber?"
             :p3 "This park is a bit out of hand. Consider alternatives to public transport."
         }
         :parking_true {
@@ -86,14 +86,14 @@
             :p3 "Parking is not possible at this location."
         }
         :dogs_true {
-            :p1 "Yes, do not hesitate to bring you four-legged friend with you."
+            :p1 "Yes, do not hesitate to bring your four-legged friend with you."
             :p2 "Yes, dogs are permitted in the park."
             :p3 "You may bring your dog here. Remember to keep them on a leash."
         }
         :dogs_false {
             :p1 "Unfortunately, dogs are not permitted at this location."
             :p2 "This park does not tolerate dogs, consider some of the others."
-            :p3 "I am afraid your dog won't be able to come along to this park."
+            :p3 "I am afraid your dog won't be able to accompany you to this park."
         }
     }
     )
