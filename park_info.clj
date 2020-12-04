@@ -339,7 +339,7 @@
         :opening_hours "open year-round"
         ;---Map---
         :map_url "https://www.praha.eu/public/9e/a/ad/184253_4_stromovka_web.pdf"     
-
+    }
     def Vysehrad{
         ;---Basic Info---
         :food true
