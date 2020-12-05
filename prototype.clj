@@ -151,7 +151,7 @@
             :p3 "I am afraid your dog won't be able to accompany you to this park."
         }})
 
-(def synonyms_food #{"eat", "dinner", "lunch", "breakfast", "food", "dine", "diner", "hunger", "hungry", "snack", "meal", "meals", "drink", "drinkings", "drinks"})
+(def synonyms_food #{"eat", "dinner", "lunch", "breakfast", "food", "dine", "diner", "hunger", "hungry", "snack", "meal", "meals", "drink", "drinking", "drinks", "restaurant", "restaurants"})
 (def synonyms_toilet #{"WC", "restroom", "restrooms", "bathroom", "toilets", "toilet", "WCs", "outhouse", "lavatory"})
 (def synonyms_POI #{"attractions", "sights", "sight", "attraction", "activity", "activities", "tourist attraction", "tourist attractions"})
 
