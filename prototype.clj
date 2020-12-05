@@ -208,7 +208,7 @@
 
 (defn prototype ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
 [] ; no args
-  (println "Hi, I am a Bertramka park guide chatbot. Please ask me about food or dogs at Bertramka. (your input must include words 'food' or 'dogs').") ;1st welcome message
+  (println "Hi, I am a park guide chatbot specialized in information about FrantiskanskaZahrada. Please ask me about Frantiskanska Zahrada, I will do my best to asnwer any questions you might have.") ;1st welcome message
   (loop [input (read-line)] ;takes user input, stores it in variable
     (if (= input "stop") ;checks user input, if "stop, ends loop"
       (do
