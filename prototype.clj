@@ -43,12 +43,20 @@
 (def synonyms_food #{"eat", "dinner", "lunch", "breakfast", "food", "dine", "diner", "hunger", "hungry", "snack", "meal", "meals", "drink", "drinkings", "drinks"})
 
 (defn assign_keyword_category 
-[keyword]
-  (cond
-    (contains? synonyms_dogs keyword) (def category :dogs)
-    (contains? synonyms_food keyword) (def category :food)
-    :else (println "This is an incorrect input"))
-  (println "Category is: " category))
+[str]
+  (def lowerStr (string/lower-case str))
+  (def dogs 0)
+  (def food 0)
+  (doseq [key synonyms_dogs] 
+    (if (string/includes? lowerStr key) 
+    (def dogs (+ dogs 1)) nil))
+  (doseq [key synonyms_food] 
+    (if (string/includes? lowerStr key) 
+    (def food (+ food 1)) nil))
+   (if (> dogs food) (def category "dogs") (def category "food"))
+  (println "Category is: " category)
+category)
+; (println (assign_keyword_category "Go eat some food boy"))
 
 (defn get_response [p_cat] ;get response function that fetches a random response based on keyword
     (def rn (rand-int 4))
