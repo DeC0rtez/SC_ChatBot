@@ -109,7 +109,7 @@
     :playground_extra "yes, in the vicinity: Community and Maternal centre Kampa"
     ;---Directions---
     :public_transport "
-    stop: Helichova - tram:s #12, #20, #20, #22, #23, #57 
+    stop: Helichova - trams: #12, #20, #20, #22, #23, #57 
     stop: Újezd - trams: #6, #9, #22, #23, #57, #58, #59"
     :GPS_coords "50°5′16.87″ N, 14°24′14.58″ E"
     :parking false
@@ -294,9 +294,10 @@
     :playground_extra "yes, by the restaurant"
     ;---Directions---
     :public_transport "
-    metro: Jiřího z Poděbrad (Line A)
+    stop: Jiřího z Poděbrad metro line(s): C
     stop: Na Smetance - bus: #135
-    stop: Italská/ Vinohradská Tržnice - tram: #11"
+    stop: Italská - tram: #11
+    stop: Vinohradská Tržnice - tram: #11"
     :GPS_coords "50°4′50.659″ N, 14°26′26.287″ E"
     :parking false
     :parking_extra nil
