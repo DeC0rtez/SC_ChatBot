@@ -180,23 +180,22 @@
 (defn assign_keyword_category 
 [keyword]
   (cond
-    (contains_kwd? synonyms_food keyword) (def category :food)
-    (contains_kwd? synonyms_toilet keyword) (def category :toilet)
-    (contains_kwd? synonyms_POI keyword) (def category :POI)
-    (contains_kwd? synonyms_bike keyword) (def category :bike_path)
-    (contains_kwd? synonyms_skating keyword) (def category :skating)
-    (contains_kwd? synonyms_sports keyword) (def category :sports_field)
-    (contains_kwd? synonyms_playground keyword) (def category :playground)
-    (contains_kwd? synonyms_public_transport keyword) (def category :public_transport)
-    (contains_kwd? synonyms_coords keyword) (def category :GPS_coords)
-    (contains_kwd? synonyms_parking keyword) (def category :parking)
-    (contains_kwd? synonyms_dogs keyword) (def category :dogs)
-    (contains_kwd? synonyms_path keyword) (def category :path_type)
-    (contains_kwd? synonyms_administration keyword) (def category :administered_by)
-    (contains_kwd? synonyms_hours keyword) (def category :opening_hours)
-    (contains_kwd? synonyms_map keyword) (def category :map_url)
-    :else (println "This is an incorrect input"))
-  (println "Category is: " category))
+    (contains_kwd? synonyms_food keyword) :food
+    (contains_kwd? synonyms_toilet keyword) :toilet
+    (contains_kwd? synonyms_POI keyword) :POI
+    (contains_kwd? synonyms_bike keyword) :bike_path
+    (contains_kwd? synonyms_skating keyword) :skating
+    (contains_kwd? synonyms_sports keyword) :sports_field
+    (contains_kwd? synonyms_playground keyword) :playground
+    (contains_kwd? synonyms_public_transport keyword) :public_transport
+    (contains_kwd? synonyms_coords keyword) :GPS_coords
+    (contains_kwd? synonyms_parking keyword) :parking
+    (contains_kwd? synonyms_dogs keyword) :dogs
+    (contains_kwd? synonyms_path keyword) :path_type
+    (contains_kwd? synonyms_administration keyword) :administered_by
+    (contains_kwd? synonyms_hours keyword) :opening_hours
+    (contains_kwd? synonyms_map keyword) :map_url
+    :else :no_cat))
 
 (defn check_cat_bool 
 [park bool]
@@ -223,7 +222,7 @@
          (println "Thank you and see you next time!")) ;prints message if user input is "stop", no more recursion, ends the loop
       (do
         (println "You typed: " input)
-        (assign_keyword_category input)
+        (def category (assign_keyword_category input))
         (check_cat_bool Frantiskanska_Zahrada category)
         (cond
            (and (= category :food) (= checked_bool false)) (get_response phrases_false :food)
@@ -246,8 +245,8 @@
            (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
            (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
            (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs)
-           :else (println "This has no boolean"))
-        (recur (read-line))) ;repeats loop aka recursion, takes new input, repeats process
+           :else (println "This has no boolean"))))
+        (recur (read-line) ;repeats loop aka recursion, takes new input, repeats process
       )
     )
   ) 
