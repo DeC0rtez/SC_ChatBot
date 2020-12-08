@@ -1,7 +1,6 @@
 # Clojure ChatBot
 ## Background
-* A group project for the 2004 Symbolic Computation class instructed by Petr Švarný at Prague College.
-
+* A group project for the 2004 Symbolic Computation class instructed by Petr Švarný at Prague College. Project technical report available on [Github Page](https://dec0rtez.github.io/SC_ChatBot/).
 ## Objective
 * To create a basic ChatBot able to converse with the user about the various parks in Prague. The chatbot is written in Clojure in a way which allows it to be adapted and expanded upon according to progressively more demanding requirements.
 
@@ -21,7 +20,7 @@
 ## License
 * MIT LICENSE
 
-Copyright (c) [2020] [SC_ChatBot]
+Copyright (c) 2020 SC_ChatBot
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
