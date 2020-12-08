@@ -146,6 +146,7 @@
     :parking true
     :parking_extra "OC Smíchov underground parking"
     ;---Additional Information---
+    :dogs true
     :path_type "paved"
     :administered_by "Prague City"
     :opening_hours "Open year-round"
@@ -501,7 +502,7 @@
 (def alt_bike #{"bike", "biking", "cycling", "cycle", "bicycle"})
 (def alt_skating #{"Skate", "skate", "skates", "skating", "skater", "inline", "rollerblade", "rollerblades", "rollerblading"})
 (def alt_sports #{"sport", "sports", "sporting", "exercise", "exercising", "work out", "workout" "working out", "exercises", "gym", "gyms", "athletic", "atheltics", "athlete", "football", "soccer", "tennis"})
-(def alt_playground #{"play", "playground", "playing", "sandbox", "playpen", "kid", "child"})
+(def alt_playground #{"play", "playground", "playing", "sandbox", "playpen"})
 (def alt_public_transport #{"Bus", "bus", "Buses", "buses", "Metro", "metro", "Tram", "tram", "Trams", "trams", "MHD", "public transport", "public transportation"})
 (def alt_coords #{"coordinates", "co-ordinates", "co-ords", "coords", "GPS", "gps"})
 (def alt_parking #{"parking", "Parking", "park my car", "carpark", "car park", "parking ticket", "to park"})
@@ -524,6 +525,7 @@
 (def alt_stromovka #{"Stromovka","stromovka"})
 (def alt_vysehrad #{"Vysehrad","vysehrad","Vyšehrad","vyšehrad"})
 
+(def parks #{"frantiskanska_zahrada", "bertramka", "obora_hvezda", "kampa", "kinskeho_zahrada", "klamovka", "ladronka", "letna", "petrin", "riegrovy_sady", "stromovka", "vysehrad"})
 
 (defn contains_kwd? 
 [syn_set str]
@@ -535,24 +537,35 @@
     (if (> amount 0) true false)
 )
 
-(defn identify_park
-[park_string]
-    (cond
-        (contains? alt_bertramka park_string) (def identified_park "bertramka")
-        (contains? alt_frantiskanska_zahrada park_string) (def identified_park "frantiskanska_zahrada")
-        (contains? alt_obora_hvezda park_string) (def identified_park "obora_hvezda")
-        (contains? alt_kampa park_string) (def identified_park "kampa")
-        (contains? alt_kinskeho_zahrada park_string) (def identified_park "kinskeho_zahrada")
-        (contains? alt_klamovka park_string) (def identified_park "klamovka")
-        (contains? alt_ladronka park_string) (def identified_park "ladronka")
-        (contains? alt_letna park_string) (def identified_park "letna")
-        (contains? alt_petrin park_string) (def identified_park "petrin")
-        (contains? alt_riegrovy_sady park_string) (def identified_park "riegrovy_sady")
-        (contains? alt_stromovka park_string) (def identified_park "stromovka")
-        (contains? alt_vysehrad park_string) (def identified_park "vysehrad")
-        :else (println "Not in park sets"))
-        (println "identified park is: " identified_park)
-        )
+(defn which_park? 
+[syn_set str]
+    (def lowerStr (string/lower-case str))
+    (def city "")
+    (doseq [key syn_set] 
+        (def lowerKey (string/lower-case key))
+        (cond (or (string/includes? lowerStr lowerKey)  (string/includes? lowerKey lowerStr))
+            (def city key)))
+city)
+
+; (defn identify_park
+; [park_string]
+;     (cond
+;         (contains_kwd? alt_bertramka park_string) (def identified_park "bertramka")
+;         (contains_kwd? alt_frantiskanska_zahrada park_string) (def identified_park "frantiskanska_zahrada")
+;         (contains_kwd? alt_obora_hvezda park_string) (def identified_park "obora_hvezda")
+;         (contains_kwd? alt_kampa park_string) (def identified_park "kampa")
+;         (contains_kwd? alt_kinskeho_zahrada park_string) (def identified_park "kinskeho_zahrada")
+;         (contains_kwd? alt_klamovka park_string) (def identified_park "klamovka")
+;         (contains_kwd? alt_ladronka park_string) (def identified_park "ladronka")
+;         (contains_kwd? alt_letna park_string) (def identified_park "letna")
+;         (contains_kwd? alt_petrin park_string) (def identified_park "petrin")
+;         (contains_kwd? alt_riegrovy_sady park_string) (def identified_park "riegrovy_sady")
+;         (contains_kwd? alt_stromovka park_string) (def identified_park "stromovka")
+;         (contains_kwd? alt_vysehrad park_string) (def identified_park "vysehrad")
+;         :else (println "Not in park sets"))
+;         (println "identified park is: " identified_park)
+;         (def identified_park_obj ((resolve (symbol identified_park))))
+;         )
 
 (defn assign_keyword_category 
 [keyword]
@@ -573,8 +586,7 @@
     (contains_kwd? alt_hours keyword) (def category :opening_hours)
     (contains_kwd? alt_map keyword) (def category :map_url)
     :else (println "This is an incorrect input"))
-  ;(println "Category is: " category)
-  )
+  (println "Category is: " category))
 
 (defn check_cat_bool 
 [park bool]
@@ -582,8 +594,7 @@
         (= (park bool) true) (def checked_bool true)
         (= (park bool) false) (def checked_bool false)
         :else (println "Not a boolean"))
-  ;(println "checked bool is: " checked_bool)
-  )
+  (println "checked bool is: " checked_bool))
 
 
 (defn get_response [p_coll p_cat]
@@ -595,25 +606,49 @@
 
 (defn prototype ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
 [] ; no args
-  (println "Hi, I am a park guide chatbot specialized in answering questions about Frantiskanska Zahrada. Who are you?") ;1st welcome message
+  (println "Hi, I am a park guide chatbot specialized in Prague parks. Who are you?") ;1st welcome message
   (def username (read-line))
-  (println (str "Nice to meet you, " username "!"))
-  (println "Feel free to ask me questions about Františkánská Zahrada. I will do my best to asnwer.")
+  (println (str "Nice to meet you, " username "! Which park would you like to know more about?"))
+  (def user_park_string (read-line))
+ ;getting the park
+  (def identified_park (which_park? parks user_park_string)) ;defines variable identified_park
+  ;(def chosen_park (read-line))
+  ;(println "You have chosen the park: " chosen_park)
+  (println "You have chosen the park: " identified_park)
+  (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot.")
+  (def identified_park (resolve (symbol identified_park)))
   (loop [input (read-line)] ;takes user input, stores it in variable
     (if (= input "stop") ;checks user input, if "stop, ends loop"
       (do
-         (println "Thank you for stopping by, " username ". Enjoy your trip and see you next time!")) ;prints message if user input is "stop", no more recursion, ends the loop
+         (println "Thank you and see you next time!")) ;prints message if user input is "stop", no more recursion, ends the loop
       (do
-        ;(println "You typed: " input)
+        (println "You typed: " input)
         (assign_keyword_category input)
-        (check_cat_bool frantiskanska_zahrada category)
+        ;(check_cat_bool identified_park category)
+        ; (cond ;park-specific cat check
+        ;    (= identified_park "bertramka") (check_cat_bool bertramka category)
+        ;    (= identified_park "frantiskanska_zahrada") (check_cat_bool frantiskanska_zahrada category)
+        ;    (= identified_park "obora_hvezda") (check_cat_bool obora_hvezda category)
+        ;    (= identified_park "kampa") (check_cat_bool kampa category)
+        ;    (= identified_park "kinskeho_zahrada") (check_cat_bool kinskeho_zahrada category)
+        ;    (= identified_park "klamovka") (check_cat_bool klamovka category)
+        ;    (= identified_park "ladronka") (check_cat_bool ladronka category)
+        ;    (= identified_park "letna") (check_cat_bool letna category)
+        ;    (= identified_park "petrin") (check_cat_bool petrin category)
+        ;    (= identified_park "riegrovy_sady") (check_cat_bool riegrovy_sady category)
+        ;    (= identified_park "stromovka") (check_cat_bool stromovka category)
+        ;    (= identified_park "vysehrad") (check_cat_bool vysehrad category)
+        ;    )
+           (check_cat_bool identified_park category)
+           
+
         (cond ;prints user friendly phrase
            (and (= category :food) (= checked_bool false)) (get_response phrases_false :food)
            (and (= category :food) (= checked_bool true)) (get_response phrases_true :food)
            (and (= category :toilet) (= checked_bool false)) (get_response phrases_false :toilet)
            (and (= category :toilet) (= checked_bool true)) (get_response phrases_true :toilet)
-           (and (= category :POI) (nil? (frantiskanska_zahrada :POI))) (get_response phrases_false :POI)
-           (and (= category :POI) (not (nil? (frantiskanska_zahrada :POI)))) (get_response phrases_true :POI)
+           (and (= category :POI) (nil? (identified_park :POI))) (get_response phrases_false :POI)
+           (and (= category :POI) (not (nil? (identified_park :POI)))) (get_response phrases_true :POI)
            (and (= category :bike_path) (= checked_bool false)) (get_response phrases_false :bike_path)
            (and (= category :bike_path) (= checked_bool true)) (get_response phrases_true :bike_path)
            (and (= category :skating) (= checked_bool false)) (get_response phrases_false :skating)
@@ -622,25 +657,26 @@
            (and (= category :sports_field) (= checked_bool true)) (get_response phrases_true :sports_field)
            (and (= category :playground) (= checked_bool false)) (get_response phrases_false :playground)
            (and (= category :playground) (= checked_bool true)) (get_response phrases_true :playground)
-           (and (= category :public_transport) (nil? (frantiskanska_zahrada :public_transport))) (get_response phrases_false :public_transport)
-           (and (= category :public_transport) (not (nil? (frantiskanska_zahrada :public_transport)))) (get_response phrases_true :public_transport)
+           (and (= category :public_transport) (nil? (identified_park :public_transport))) (get_response phrases_false :public_transport)
+           (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (get_response phrases_true :public_transport)
            (and (= category :parking) (= checked_bool false)) (get_response phrases_false :parking)
            (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
            (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
            (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs))
+
         (cond ;prints extra information
-           (and (= category :food) (= checked_bool true) (not (nil? (frantiskanska_zahrada :food_extra)))) (println (frantiskanska_zahrada :food_extra))
-           (and (= category :toilet) (= checked_bool true) (not (nil? (frantiskanska_zahrada :toilet_extra)))) (println (frantiskanska_zahrada :toilet_extra))
-           (and (= category :sports_field) (= checked_bool true) (not (nil? (frantiskanska_zahrada :sports_field_extra)))) (println (frantiskanska_zahrada :sports_field_extra))
-           (and (= category :playground) (= checked_bool true) (not (nil? (frantiskanska_zahrada :playground_extra)))) (println (frantiskanska_zahrada :playground_extra))
-           (and (= category :parking) (= checked_bool true) (not (nil? (frantiskanska_zahrada :parking_extra)))) (println (frantiskanska_zahrada :parking_extra))
-           (and (= category :POI) (not (nil? (frantiskanska_zahrada :POI)))) (println (frantiskanska_zahrada :POI))
-           (and (= category :public_transport) (not (nil? (frantiskanska_zahrada :public_transport)))) (println "You can reach this park by the following public transport options: " (frantiskanska_zahrada :public_transport))
-           (and (= category :GPS_coords) (not (nil? (frantiskanska_zahrada :GPS_coords)))) (println "The GPS co-ordinates are: " (frantiskanska_zahrada :GPS_coords))
-           (and (= category :path_type) (not (nil? (frantiskanska_zahrada :path_type)))) (println "Path types at this park: " (frantiskanska_zahrada :path_type))
-           (and (= category :administered_by) (not (nil? (frantiskanska_zahrada :administered_by)))) (println "The park is administered by: "(frantiskanska_zahrada :administered_by))
-           (and (= category :opening_hours) (not (nil? (frantiskanska_zahrada :opening_hours)))) (println "The opening hours are: " (frantiskanska_zahrada :opening_hours))
-           (and (= category :map_url) (not (nil? (frantiskanska_zahrada :map_url)))) (println "You can find the park map here: "(frantiskanska_zahrada :map_url))
+           (and (= category :food) (= checked_bool true) (not (nil? (identified_park :food_extra)))) (println (identified_park :food_extra))
+           (and (= category :toilet) (= checked_bool true) (not (nil? (identified_park :toilet_extra)))) (println (identified_park :toilet_extra))
+           (and (= category :sports_field) (= checked_bool true) (not (nil? (identified_park :sports_field_extra)))) (println (identified_park :sports_field_extra))
+           (and (= category :playground) (= checked_bool true) (not (nil? (identified_park :playground_extra)))) (println (identified_park :playground_extra))
+           (and (= category :parking) (= checked_bool true) (not (nil? (identified_park :parking_extra)))) (println (identified_park :parking_extra))
+           (and (= category :POI) (not (nil? (identified_park :POI)))) (println (identified_park :POI))
+           (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (println "You can reach this park by the following public transport options: " (identified_park :public_transport))
+           (and (= category :GPS_coords) (not (nil? (identified_park :GPS_coords)))) (println "The GPS co-ordinates are: " (identified_park :GPS_coords))
+           (and (= category :path_type) (not (nil? (identified_park :path_type)))) (println "Path types at this park: " (identified_park :path_type))
+           (and (= category :administered_by) (not (nil? (identified_park :administered_by)))) (println "The park is administered by: "(identified_park :administered_by))
+           (and (= category :opening_hours) (not (nil? (identified_park :opening_hours)))) (println "The opening hours are: " (identified_park :opening_hours))
+           (and (= category :map_url) (not (nil? (identified_park :map_url)))) (println "You can find the park map here: "(identified_park :map_url))
            )
         (recur (read-line)) ;repeats loop aka recursion, takes new input, repeats process
       )
