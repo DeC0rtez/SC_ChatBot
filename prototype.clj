@@ -539,10 +539,10 @@
 
 (defn which_park? 
 [syn_set str]
-    (def lowerStr (string/lower-case str))
+    (def lowerStr (string/replace (string/lower-case str) " " ""))
     (def city "")
     (doseq [key syn_set] 
-        (def lowerKey (string/lower-case key))
+        (def lowerKey (string/replace (string/lower-case key) "_" ""))
         (cond (or (string/includes? lowerStr lowerKey)  (string/includes? lowerKey lowerStr))
             (def city key)))
 city)
