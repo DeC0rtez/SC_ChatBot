@@ -11,6 +11,6 @@
 (def alt_parking #{"car","automobile","parking","to park"})
 (def alt_dogs #{"dog","pet","pup"})
 (def alt_path #{"path","walkway","surface","pavement","trail"})
-(def alt_administration #{"responsible","admin","manage","managing","authority","contact"})
+(def alt_administration #{"responsible","admin","manage","managing","authority","contact","in charge"})
 (def alt_hours #{"time","hour","open","close","when","how long"})
 (def alt_map #{"map","overview","where"})
