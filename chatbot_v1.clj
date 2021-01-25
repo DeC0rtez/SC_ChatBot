@@ -496,21 +496,21 @@
         }})
 
 ;sets of words tied up to info categories
-(def alt_food #{"eat","dinner","lunch","breakfast","food","dine","hungry","hunger","snack","meal","drink","restaraunt","cafe","bar","coffee","beer","wine","svarak","svařák"})
+(def alt_food #{"eat","dinner","lunch","breakfast","food","dine","hungry","hunger","snack","meal","drink","restaraunt","cafe","bar","coffee","beer","wine","svarak","svařák", "dining"})
 (def alt_toilet #{"wc","restroom","bathroom","toilet","outhouse","lavatory","latrine","water closet"})
-(def alt_POI #{"sight", "attraction", "activity", "activities", "tourist","landmark","fun to do","interesting to do","interesting to see","exciting to do","exciting to see","monument"})
+(def alt_POI #{"sight", "attraction", "activity", "to do", "activities", "tourist","landmark","fun to do", "interesting", "interesting to do","interesting to see","exciting to do","exciting to see","monument"})
 (def alt_bike #{"bike","biking","cycle","cycling"})
 (def alt_skating #{"skate","skating","rollerblade","rollerblading"})
 (def alt_sports #{"sport","exercise","work out","workout","working out","gym","athletic","soccer","tennis","ball","physical"})
 (def alt_playground #{"playground","playpen","sandbox","child","kid"})
 (def alt_public_transport #{"bus","metro","subway","tube","underground","tram","mhd","public transport","rapid transit","mass transit","get there","get here","travel"})
-(def alt_coords #{"coordinates","co-ordinates","coords","co-ords","gps"})
+(def alt_coords #{"coordinates","co-ordinates","coords","co-ords","gps", "where"})
 (def alt_parking #{"car","automobile","parking","to park"})
 (def alt_dogs #{"dog","pet","pup"})
 (def alt_path #{"path","walkway","surface","pavement","trail"})
 (def alt_administration #{"responsible","admin","manage","managing","authority","contact","in charge"})
 (def alt_hours #{"time","hour","open","close","when","how long"})
-(def alt_map #{"map","overview","where"})
+(def alt_map #{"map","overview"})
 ;sets of alternative park names
 (def alt_bertramka #{"Bertramka","bertramka"})
 (def alt_frantiskanska_zahrada #{"Frantiskanska Zahrada","frantiskanska zahrada","Frantiskanska zahrada", "Františkánská Zahrada","františkánská zahrada","Františkánská zahrada"})
@@ -525,7 +525,7 @@
 (def alt_stromovka #{"Stromovka","stromovka"})
 (def alt_vysehrad #{"Vysehrad","vysehrad","Vyšehrad","vyšehrad"})
 ;words which will stop the bot
-(def alt_stop #{"stop", "goodbye", "bye", "farewell", "end"})
+(def alt_stop #{"stop", "goodbye", "bye", "farewell", "end", "quit", "exit", "terminate"})
 ;park names for function: which_park?
 (def parks #{"frantiskanska_zahrada", "bertramka", "obora_hvezda", "kampa", "kinskeho_zahrada", "klamovka", "ladronka", "letna", "petrin", "riegrovy_sady", "stromovka", "vysehrad"})
 
@@ -567,7 +567,7 @@ city)
     (contains_kwd? alt_administration keyword) (def category :administered_by)
     (contains_kwd? alt_hours keyword) (def category :opening_hours)
     (contains_kwd? alt_map keyword) (def category :map_url)
-    :else (println "This is an incorrect input or a question I cannot answer."))
+    :else (def category :unrecognized))
   )
 
 (defn check_cat_bool ;Function which checks the truth value of a bool in park data
@@ -609,7 +609,7 @@ city)
   (def user_park_string (read-line))
  ;getting the park
   (def identified_park (which_park? parks user_park_string)) ;defines variable identified_park
-  (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end")
+  (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end, exit, quit, terminate")
   (def identified_park (resolve (symbol identified_park)))
   (loop [input (read-line)] ;takes user input, stores it in variable
     (if (contains? alt_stop input) ;checks user input, if in set alt_stop, ends loop"
@@ -640,7 +640,8 @@ city)
            (and (= category :parking) (= checked_bool false)) (get_response phrases_false :parking)
            (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
            (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
-           (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs))
+           (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs)
+           (= category :unrecognized) (println "Unfortunately, I did not understand what you meant. Please check your spelling & phrasing and ask again! If you are sure your spelling is right, chances are that I do not know the answer to your question. Yes, I know I am a robot, but even I do not know everything!(yet)"))
 
         (cond ;prints extra information
            (and (= category :food) (= checked_bool true) (not (nil? (identified_park :food_extra)))) (println (identified_park :food_extra))
