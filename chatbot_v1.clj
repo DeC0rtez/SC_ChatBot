@@ -542,15 +542,15 @@
 (defn which_park? ;Function which reads string and matches it to a park name
 [syn_set str] ;str is string which is parsed, syn_set is the defines set of synonyms against which the string is compared
     (def lowerStr (string/replace (string/lower-case str) " " ""))
-    (def city "")
+    (def city nil)
     (doseq [key syn_set] 
-    ; š ě ř
         (def lowerKey (string/replace (string/lower-case key) "_" ""))
         (def replacedCzech (string/replace lowerKey "á" "a"))
         (def replacedCzech (string/replace replacedCzech "č" "c"))
         (def replacedCzech (string/replace replacedCzech "š" "s"))
         (def replacedCzech (string/replace replacedCzech "ě" "e"))
         (def replacedCzech (string/replace replacedCzech "ř" "r"))
+        
         (cond (or (string/includes? lowerStr replacedCzech)  (string/includes? replacedCzech lowerStr))
             (def city key)))
 city)
@@ -611,10 +611,20 @@ city)
   (println "10) Riegrovy Sady")
   (println "11) Stromovka")
   (println "12) Vysehrad")
-  (println "Which of them would you like to know more about? (Please use the standard english alphabet, I currently do not understand czech letters)")
-  (def user_park_string (read-line))
- ;getting the park
-  (def identified_park (which_park? parks user_park_string)) ;defines variable identified_park
+  (println "Which of them would you like to know more about?")
+   ;getting the park
+
+  (loop [user_park_string (read-line)]
+      (def identified_park (which_park? parks user_park_string)) ;defines variable identified_park
+      (if (not identified_park )
+        (do 
+        (println "Park was not recognized, please try again!")
+        
+        (recur (read-line)))
+      )
+  )
+  
+  
   (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end, exit, quit, terminate")
   (def identified_park (resolve (symbol identified_park)))
   (loop [input (read-line)] ;takes user input, stores it in variable
