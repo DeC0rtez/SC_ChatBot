@@ -545,7 +545,9 @@
     (def city "")
     (doseq [key syn_set] 
         (def lowerKey (string/replace (string/lower-case key) "_" ""))
-        (cond (or (string/includes? lowerStr lowerKey)  (string/includes? lowerKey lowerStr))
+        (def replacedCzech (string/replace lowerKey "á" "a"))
+        (def replacedCzech (string/replace replacedCzech "č" "c"))
+        (cond (or (string/includes? lowerStr replacedCzech)  (string/includes? replacedCzech lowerStr))
             (def city key)))
 city)
 
