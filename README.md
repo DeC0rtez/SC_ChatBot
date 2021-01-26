@@ -8,8 +8,11 @@
 * Working Clojure REPL on system
 * Alternatively access to an online REPL such as [repl.it](https://repl.it/)
 
+## Installation
+* No installation required. 
+* All features of the code can be used directly from a .clj file in a REPL.
+
 ## Usage
-* No installation required. All features of the code can be used directly from a .clj file in a REPL.
 * To start the chatbot in REPL, run the chatbot_v1.clj file and type: (chatbot) to run the function.
 * Once the chatbot has taken your name and you have selected a park to ask questions about, you can ask questions about the selected park. The ChatBot will check the input, identify what the user is asking about and generate a coherent response. 
 * To end the conversation with the chatbot by typing one of the following words: end, stop, bye, goodbye and farewell. (works only after username and park have been chosen.)
@@ -45,7 +48,6 @@ SOFTWARE.
 
 ## KNOWN ISSUES 
 * missing park vojanovy sady
-* not interpreting unique czech alphabet letters in park recognition
 * slight issues with multi word string keyword recognition and category assigning
 * no apparent separation of user and bot messages
 
