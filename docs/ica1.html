@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <title>Technical Report</title>
+    </head>
+    <body>
+    <div class="Introduction"></div>
+        <h1>Introduction</h1>
+        <p>This page serves as a technical report for the Clojure <a href="https://github.com/DeC0rtez/SC_ChatBot">Chatbot</a> developed by Daniel De Corte, Artem Pyatigorov, Nikita Druzhkov and Vladyslav Koskovetskyi as part of a in class assignment for the Symbolic Computation module instructed by Petr Švarný at Prague college in the 2004 semester.
+
+        The document aims to illustrate the process behind the creation of this application, the decisions taken and the justifications for them.
+        </p>
+    </div>
+    <div class="Development Process">
+        <h1>Development Process</h1>
+        <p>The development process was split into multiple stages. Considering the small scale of the project and the relatively novice level of the team members, no specific SDLC was chosen or applied in the development process in this project. </p>
+        <h2>STAGE 1: Data Collection</h2>
+            <p>During the first stage, the main goal was the collection, sanitization and storage of data in a strucutred manner which allows interpretation by clojure. For ICA1, the decision was made to simplify this aspect as much as possible while maintaining functionality. The data about each individual park was stored in variables named respectively after them. Below is an example, showing the structure in which data was stored for the park Vyšehrad: </p>
+            <h4>FIGURE 1: structured data</h4>
+
+            <img src="images/stored_data.PNG" alt="data" class="code_example">
+            <p>Besides the structuralization of data, this stage also involved the writing of phrases which the bot is going to respond to the user with based on context.</p>
+        <h2>STAGE 2: Writing of component & helper functions</h2>
+            <p>In the second stage, the primary focus of the team was to create component functions which could later be used in the main body of the program to perform a variety of operations. Some of these are:</p>
+            <p>FIGURE 2: Function which identifies keyword:</p>
+            <img src="images/parser_func.PNG" alt="parser" class="code_example">
+            <p>FIGURE 3: Function which detects category of keyword in user string:</p>
+            <img src="images/kw_cat_assign_func.PNG" alt="cat_assigner" class="code_example">
+            <p>FIGURE 4: Function which randomly selects a response based on category:</p>
+            <img src="images/response_func.PNG" alt="get_response" class="code_example">
+        <h2>STAGE 3: Main function body</h2>
+            <p>Stage 3 was primarily about creating the structure of the main function. This involved writing a loop which processes user inputs, stores them in a variable, reads them and repeats this process as long as the input is not a specific word which ends the loop.</p>
+            <p>Flowchart illustrating the functionality of the chatbot: </p>
+            <h4>FIGURE 5: Flowchart</h4>
+            <img src="images/chatbot_flowchart.png" alt="Flowchart" class="responsive">
+        <h2>STAGE 4: Final build, testing, adjustments & documentation</h2>
+            <p>The fourth and final stage was by far the most extensive and time-demanding. During this stage, helper functions were integrated into the main body of the chatbot, tested and modified to ensure compatibility with one another within the program.</p>
+            <p>During this stage, many improvements and optimizations were made by various members of the team. Often there was an initial, functioning but inefficient function which was improved upon and adapted to fit our needs more exactly and be easier to use.</p>
+            <p>Once finalized, the code was cleaned to not include any outdated and unused helper functions or data, restructured to abide by clojure coding style and also commented to explain the functionality of each function and the requirements for their parameters/ arguments. At last, the lifespan of the project was documented in this technical report and the README.</p>
+        <h2>Future STAGES: Continued development & planned improvements</h2>
+            <p>Seeing as the current build of the chatbot is only the first of at least two, the team has also gone through discussion with regards to improvements to current features and the addition of new ones in the future.</p>
+            <h3>Planned improvement #1: Visual tweaks and enhanced clarity</h3>
+            <p>One of the main goals outlined for future improvements is the overall redesign of what the end user is presented with when using the chatbot. This includes the possible creation of a GUI, the color-coding of text - making it clear which message comes from the bot and which is from the user and also the addition of nicknames in front of messages, serving the same purpose.</p>
+            <h3>Planned improvement #2: Improved parsing</h3>
+            <p>Another planned enhancement is full czech alphabet support. The current bot is not able to interpet special czech letters such as: ž, č or ř. While this was initially intended to be implemented, the way of doing it was inefficient and would greatly increase the size of the code. The initial plan was to use a concept similar to the one in keyword_recognition, i.e. matching user input against park name alternatives stored in sets. This will be a main area of focus for the next iteration, as since the bot is supposed to work with Czech parks, it is a srucial aspect.</p>
+            <h3>Planned improvement #3: Ability to switch parks mid conversation</h3>
+            <p>The current build of the bot is incapable of switching between parks mid conversation. It requires a restart of the program, decreasing user convenience. This is an oversight which is definitely going to be adressed in the next build.</p>
+            <h3>Planned improvement #4: Error Handling</h3>
+            <p>The current bot functions well when the user behaves predictably, but runs into issues when the user makes major spelling mistakes, ignores the command of the bot to enter a park name, enters a park name with czech alphabet letter or types gibberish. This is another major aspect that will be improved in the next iteration of the program.</p>
+
+        
+
+
+        
+    </div>
+    <div class="Project Management">
+        <h1>Project Management</h1>
+        <h3>Project Management Tools</h3>
+            <p>GitHub was selected as the tool for project management, collabotation and hosting early on in the lifecycle of the project. The primary reason for this is the rich selection of features GitHub provides for effective and intuitive project management & collaboration.</p>
+            <p>Discord was selected as the primary tool for instant communication and discussion about the project due to its numerous features allowing for easy filesharing, screensharing, etc.</p>
+        
+        <h3>Project Management Proof</h3>
+        <h4>FIGURE 6: Project Boards (available at: <a href="https://github.com/DeC0rtez/SC_ChatBot/projects/1">https://github.com/DeC0rtez/SC_ChatBot/projects/1</a>)</h4>
+        <img src="images/dashboard.PNG" alt="dashboard" class="responsive">
+            <p>The above Github project board was used to keep track of tasks, discuss encountered problems and approaches to them. As seen in the figure, the project board was split into 5 Columns.</p>
+            <p>The first column serves as a place where contributors can post their suggestions which will be considered for future integration into the project.</p>
+            <p>The second column is meant for tasks/ problems which the team has committed to solving and implementing. The individual issues sit in this column until a developer assigns them to himself and officially begins work on them.</p>
+            <p>The third column indicates what issues/ problems are currently being worked on by which developer. The primary purpose it served was the avoidance of unfortunate situations in which 2 developers work on the same issue by mistake, whereby misallocating their time.</p>
+            <p>The fourth column is for tasks which have been completed and are currently waiting for or under review by another developer. Reviews were done mainly on data and on code and helped spot some inconsistencies, missing data or spelling mistakes.</p>
+            <p>The final column displays issues which have already been resolved and reviewed. Issues found in this column have already been integrated into the latest version of the product.</p>
+            <h4>FIGURE 7: Closed Issues (available at: <a href="https://github.com/DeC0rtez/SC_ChatBot/pulls?q=is%3Apr+is%3Aclosed">https://github.com/DeC0rtez/SC_ChatBot/pulls?q=is%3Apr+is%3Aclosed</a>)</h4>
+        <img src="images/closed_issues.PNG" alt="closed_issues" class="responsive">
+        <h4>FIGURE 8: Closed pull requests (available at: <a href="https://github.com/DeC0rtez/SC_ChatBot/pulls?q=is%3Apr+is%3Aclosed">https://github.com/DeC0rtez/SC_ChatBot/pulls?q=is%3Apr+is%3Aclosed</a>)</h4>
+        <img src="images/closed_prequests.PNG" alt="pull_requests" class="responsive">
+        <h4>FIGURE 9: Open pull requests (available at: <a href="https://github.com/DeC0rtez/SC_ChatBot/pulls?q=is%3Aopen+is%3Apr">https://github.com/DeC0rtez/SC_ChatBot/pulls?q=is%3Aopen+is%3Apr</a>)</h4>
+        <img src="images/open_prequests.PNG" alt="pull_requests" class="responsive">
+            
+    
+        <h4>FIGURE 10: Commit distribution (available at: <a href="https://github.com/DeC0rtez/SC_ChatBot/pulse/monthly">https://github.com/DeC0rtez/SC_ChatBot/pulse/monthly</a>)</h4>
+        <img src="images/commits.PNG" alt="commits" class="responsive">
+        
+
+    </div>
+
+    </body>
+    <footer>
+        <h5>Author: Daniel De Corte<h5>
+        <h5>Last Updated on 8/12/2020</h5>
+    </footer>
+</html>

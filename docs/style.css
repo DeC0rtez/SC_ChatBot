@@ -50,6 +50,7 @@ h5 {
 
 
 
+
 p {
     padding-left: 10%;
     padding-right: 10%;
@@ -75,6 +76,15 @@ body {
     padding-bottom: 5px;
     width: 80%;
     height: auto;
+}
+
+.title_image {
+    height: 15%;
+    width: 15%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+    
 }
 
 .code_example

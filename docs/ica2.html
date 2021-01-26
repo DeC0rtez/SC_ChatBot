@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <title>ICA 2</title>
+    </head>
+    <body>
+        <div class="Introduction"></div>
+        <h1>ICA2: TECHNICAL REPORT</h1>
+        <h1>Introduction</h1>
+        <p>This page serves as a technical report for the second version of the Clojure <a href="https://github.com/DeC0rtez/SC_ChatBot">Chatbot</a> developed by Daniel De Corte, Artem Pyatigorov, Nikita Druzhkov and Vladyslav Koskovetskyi as part of the second in-class assignment for the Symbolic Computation module instructed by Petr Švarný at Prague college in the 2004 semester. </p>
+
+        <p>The report documents the improvements and changes made to the chatbot based on feedback provided about the previous version and based on requirements of the ICA2 specification.
+        </p>
+    </div>
+    <div class="Development Process">
+        <h1>Development Process</h1>
+        <p>The development process has not really changed since the first ICA. The team members still mostly communicated via Discord and worked in short, intense sprints to develop and deliver features. The only major difference from ICA1 and ICA2 was, that for ICA2 the team members had access to feedback, based upon which the project could be further improved.</p>
+
+        <h2>STAGE 1: Feedback Analysis</h2>
+            <p> To start off work on the second ICA, the team members met in a discord group call and discussed the feedback provided about ICA1. Several issues were identified and distributed between the teammembers for solving. Besides this, the team members agreed to set up regular check in meetings, during which progress and problems related to the project were discussed.</p>
+
+            <p>Based on the feedback and the planned improvements in the previous technical report, the following changes were made:</p>
+
+            <p>1) Improved parsing</p>
+            <p>2) Ability to switch parks during conversation</p>
+            <p>3) Improved Error handling</p>
+            
+        <h2>STAGE 2: Development of decision trees</h2>
+            <p>In the second stage, the main focus of the team was on coming up with theoretical models for decision trees and subsequently implementing them. Several approaches were considered, but due to limited available time, Artem's prototype consisting of nested if-statements was utilised. The primary reason for this choice was the relative simplicity of the implementation and also the good scalability. </p>
+            <p>FIGURE 1: Block of code showcasing decision tree theoretical mode:</p>
+            <img src="images/lowres_dtree_theory.JPG" alt="dtree" class="responsive">
+
+            <p>FIGURE 2: Diagram showing decision tree implementation:</p>
+            <img src="images/decision_tree.JPG" alt="parser" class="code_example">
+        <h2>STAGE 3: Addressing issues and bugfixing</h2>
+            <p>Stage 3 was primarily about integrating the newly created decision trees into existing code structure. This was no easy task, and after various proposed approaches, the team settled on fundamentally restructuring the body of the code to be more modular and allow for easy scalability and expansion.</p>
+            <p>This was done by creating a separate dialogue function for each topic the bot is able to have a conservation about. The topics are: Prague parks, dog breeds & trees commonly seen in Czech nature. These component functions were then included in the body of the main function, and are triggered based on what the user chooses after providing his name to the Bot at the beginning of the conversation. </p>
+            <h4>FIGURE 5: Structure of main function</h4>
+            <img src="images/main_func_structure.JPG" alt="Main_func" class="responsive">
+        <h2>STAGE 4: Final build, testing, adjustments & documentation</h2>
+            <p>In the fourth and final stage, several hotfixes were applied to fix small, unintended errors and bugs in the code which appeared as unwanted byproducts of the rewriting and resctructuring of various bodies of code.</p>
+            <p>Admittedly, this stage was somewhat underestimated by members of the team, and many of the fixes were applied last-minute. However, the vast majority of issues affecting the general functionality of the chatbot were resolved.</p>
+            <p>Once issues were resolved, the finalized version of the code was submitted to the team members for detailed review and scrutiny.</p>
+            <p>With the finalized code being approved, suitable documentation, including this report and the project README was updated to fully accompany the code.</p>
+        <h2>Possible future improvements:</h2>
+            <p>The current build of the chatbot is a usable program. While the goals for the project were met, and in some areas even exceeded, there are still some aspects which could be improved to make the chatbot truly accessible and usable in the real world</p>
+            <h3>Recommended improvement #1: GUI</h3>
+            <p>Implementing a GUI would make the chatbot very accessible even to less technically knowledgable users. It would also allow for greater clarity, namely in being able to separate user and bot messages by color coding. Lastly, it would also allow the chatbot to render images. This feature would be especially useful in combination with decision trees, which could verify that, based on the user's input, came to the right conclusion by rendering an image of what conclusion they have come to (e.g. showing an image of a Yorkshire Terrier to verify with the user the estimated breed of dog.)</p>
+            <h3>Recommended improvement #2: More complex decision trees</h3>
+            <p>The decision trees currently in use in the program share a common limitation: they only pose questions with binary-type answers. In order to increase the efficiency of the program by reducing the time spent by the end user, it would be good to create decision trees which can work with several answers to a posed question. While, with the current decision tree methodology used in this project, this may complicate the code and substantially increase its size, it would, in the end, result in a higher quality product for the end-user.</p>
+              
+    </div>
+
+    </body>
+    <footer>
+        <h5>Author: Daniel De Corte<h5>
+        <h5>Last Updated on 26/01/2020</h5>
+    </footer>
+</html>
