@@ -46,6 +46,7 @@ SOFTWARE.
 
 ## CHANGELOG
 * 8th December, 2020 - Initial release, v1.
+* 26th January, 2021 - Second release, v2.
 
 ## KNOWN ISSUES 
 * missing park vojanovy sady
