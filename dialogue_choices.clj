@@ -525,6 +525,7 @@
 (def alt_stromovka #{"Stromovka","stromovka"})
 (def alt_vysehrad #{"Vysehrad","vysehrad","Vyšehrad","vyšehrad"})
 ;words which will stop the bot
+(def alt_back #{"back", "before"})
 (def alt_stop #{"stop", "goodbye", "bye", "farewell", "end"})
 ;park names for function: which_park?
 (def parks #{"frantiskanska_zahrada", "bertramka", "obora_hvezda", "kampa", "kinskeho_zahrada", "klamovka", "ladronka", "letna", "petrin", "riegrovy_sady", "stromovka", "vysehrad"})
@@ -724,55 +725,65 @@ city)
     (def identified_park (which_park? parks user_park_string)) ;defines variable identified_park
     (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end")
     (def identified_park (resolve (symbol identified_park)))
+    (def exit 0)
     (loop [input (read-line)] ;takes user input, stores it in variable
-    (if (contains? alt_stop input) ;checks user input, if in set alt_stop, ends loop"
-        (do
-        (println "Thank you and see you next time!")) ;prints message if user input is in set alt_stop, no more recursion, ends the loop
-        (do
-        (assign_keyword_category input)
-        (check_cat_bool identified_park category)
-           
+    (if (contains? alt_back input)
+        (do 
+        (println "Thank you for asking"))
+        (do 
+                (if (contains? alt_stop input) ;checks user input, if in set alt_stop, ends loop"
+                (do
+                (println "Thank you and see you next time!") ;prints message if user input is in set alt_stop, no more recursion, ends the loop
+                (System/exit 0))
+                (do
+                (assign_keyword_category input)
+                (check_cat_bool identified_park category)
+                
 
-        (cond ;prints user friendly phrase
-           (and (= category :food) (= checked_bool false)) (get_response phrases_false :food)
-           (and (= category :food) (= checked_bool true)) (get_response phrases_true :food)
-           (and (= category :toilet) (= checked_bool false)) (get_response phrases_false :toilet)
-           (and (= category :toilet) (= checked_bool true)) (get_response phrases_true :toilet)
-           (and (= category :POI) (nil? (identified_park :POI))) (get_response phrases_false :POI)
-           (and (= category :POI) (not (nil? (identified_park :POI)))) (get_response phrases_true :POI)
-           (and (= category :bike_path) (= checked_bool false)) (get_response phrases_false :bike_path)
-           (and (= category :bike_path) (= checked_bool true)) (get_response phrases_true :bike_path)
-           (and (= category :skating) (= checked_bool false)) (get_response phrases_false :skating)
-           (and (= category :skating) (= checked_bool true)) (get_response phrases_true :skating)
-           (and (= category :sports_field) (= checked_bool false)) (get_response phrases_false :sports_field)
-           (and (= category :sports_field) (= checked_bool true)) (get_response phrases_true :sports_field)
-           (and (= category :playground) (= checked_bool false)) (get_response phrases_false :playground)
-           (and (= category :playground) (= checked_bool true)) (get_response phrases_true :playground)
-           (and (= category :public_transport) (nil? (identified_park :public_transport))) (get_response phrases_false :public_transport)
-           (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (get_response phrases_true :public_transport)
-           (and (= category :parking) (= checked_bool false)) (get_response phrases_false :parking)
-           (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
-           (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
-           (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs))
+                (cond ;prints user friendly phrase
+                (and (= category :food) (= checked_bool false)) (get_response phrases_false :food)
+                (and (= category :food) (= checked_bool true)) (get_response phrases_true :food)
+                (and (= category :toilet) (= checked_bool false)) (get_response phrases_false :toilet)
+                (and (= category :toilet) (= checked_bool true)) (get_response phrases_true :toilet)
+                (and (= category :POI) (nil? (identified_park :POI))) (get_response phrases_false :POI)
+                (and (= category :POI) (not (nil? (identified_park :POI)))) (get_response phrases_true :POI)
+                (and (= category :bike_path) (= checked_bool false)) (get_response phrases_false :bike_path)
+                (and (= category :bike_path) (= checked_bool true)) (get_response phrases_true :bike_path)
+                (and (= category :skating) (= checked_bool false)) (get_response phrases_false :skating)
+                (and (= category :skating) (= checked_bool true)) (get_response phrases_true :skating)
+                (and (= category :sports_field) (= checked_bool false)) (get_response phrases_false :sports_field)
+                (and (= category :sports_field) (= checked_bool true)) (get_response phrases_true :sports_field)
+                (and (= category :playground) (= checked_bool false)) (get_response phrases_false :playground)
+                (and (= category :playground) (= checked_bool true)) (get_response phrases_true :playground)
+                (and (= category :public_transport) (nil? (identified_park :public_transport))) (get_response phrases_false :public_transport)
+                (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (get_response phrases_true :public_transport)
+                (and (= category :parking) (= checked_bool false)) (get_response phrases_false :parking)
+                (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
+                (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
+                (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs))
 
-        (cond ;prints extra information
-           (and (= category :food) (= checked_bool true) (not (nil? (identified_park :food_extra)))) (println (identified_park :food_extra))
-           (and (= category :toilet) (= checked_bool true) (not (nil? (identified_park :toilet_extra)))) (println (identified_park :toilet_extra))
-           (and (= category :sports_field) (= checked_bool true) (not (nil? (identified_park :sports_field_extra)))) (println (identified_park :sports_field_extra))
-           (and (= category :playground) (= checked_bool true) (not (nil? (identified_park :playground_extra)))) (println (identified_park :playground_extra))
-           (and (= category :parking) (= checked_bool true) (not (nil? (identified_park :parking_extra)))) (println (identified_park :parking_extra))
-           (and (= category :POI) (not (nil? (identified_park :POI)))) (println (identified_park :POI))
-           (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (println "You can reach this park by the following public transport options: " (identified_park :public_transport))
-           (and (= category :GPS_coords) (not (nil? (identified_park :GPS_coords)))) (println "The GPS co-ordinates are: " (identified_park :GPS_coords))
-           (and (= category :path_type) (not (nil? (identified_park :path_type)))) (println "Path types at this park: " (identified_park :path_type))
-           (and (= category :administered_by) (not (nil? (identified_park :administered_by)))) (println "The park is administered by: "(identified_park :administered_by))
-           (and (= category :opening_hours) (not (nil? (identified_park :opening_hours)))) (println "The opening hours are: " (identified_park :opening_hours))
-           (and (= category :map_url) (not (nil? (identified_park :map_url)))) (println "You can find the park map here: "(identified_park :map_url))
-           )
-        (recur (read-line)) ;repeats loop aka recursion, takes new input, repeats process
-      )
+                (cond ;prints extra information
+                (and (= category :food) (= checked_bool true) (not (nil? (identified_park :food_extra)))) (println (identified_park :food_extra))
+                (and (= category :toilet) (= checked_bool true) (not (nil? (identified_park :toilet_extra)))) (println (identified_park :toilet_extra))
+                (and (= category :sports_field) (= checked_bool true) (not (nil? (identified_park :sports_field_extra)))) (println (identified_park :sports_field_extra))
+                (and (= category :playground) (= checked_bool true) (not (nil? (identified_park :playground_extra)))) (println (identified_park :playground_extra))
+                (and (= category :parking) (= checked_bool true) (not (nil? (identified_park :parking_extra)))) (println (identified_park :parking_extra))
+                (and (= category :POI) (not (nil? (identified_park :POI)))) (println (identified_park :POI))
+                (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (println "You can reach this park by the following public transport options: " (identified_park :public_transport))
+                (and (= category :GPS_coords) (not (nil? (identified_park :GPS_coords)))) (println "The GPS co-ordinates are: " (identified_park :GPS_coords))
+                (and (= category :path_type) (not (nil? (identified_park :path_type)))) (println "Path types at this park: " (identified_park :path_type))
+                (and (= category :administered_by) (not (nil? (identified_park :administered_by)))) (println "The park is administered by: "(identified_park :administered_by))
+                (and (= category :opening_hours) (not (nil? (identified_park :opening_hours)))) (println "The opening hours are: " (identified_park :opening_hours))
+                (and (= category :map_url) (not (nil? (identified_park :map_url)))) (println "You can find the park map here: "(identified_park :map_url))
+                )
+                (recur (read-line)) ;repeats loop aka recursion, takes new input, repeats process
+            )
+            )
+        )
     )
+    
   )
+  (println "finished")
 ) 
 
 (defn choices_chatbot ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
@@ -784,11 +795,17 @@ city)
   (println "2) Dogs")
   (println "3) Trees")
   (println "Which of these would you like to talk about?")
-  (def user_topic_string (read-line))
+(loop [user_topic_string (read-line)]
   (cond ;prints user friendly phrase
            (= user_topic_string "parks") (dialogue_parks)
            (= user_topic_string "trees") (tree_tree)
-           (= user_topic_string "dogs") (dog_tree)))
-  
-  
-  
+           (= user_topic_string "dogs") (dog_tree))
+  (println (str "Nice to meet you, " username "! We can talk about any of the following: "))
+  (println "1) Parks in Prague")
+  (println "2) Dogs")
+  (println "3) Trees")
+  (println "Which of these would you like to talk about?")
+(recur (read-line)))
+;   (def username (read-line))
+  )
+(choices_chatbot)
