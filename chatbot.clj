@@ -530,8 +530,8 @@
 ;park names for function: which_park?
 (def parks #{"frantiskanska_zahrada", "bertramka", "obora_hvezda", "kampa", "kinskeho_zahrada", "klamovka", "ladronka", "letna", "petrin", "riegrovy_sady", "stromovka", "vysehrad"})
 
-(def synonyms_yes #{"yes","yeah","yep","mhm","sure"})
-(def synonyms_deciduous #{"deciduous","large","normal"})
+(def alt_yes #{"yes","yeah","yep","mhm","sure"})
+(def alt_deciduous #{"deciduous","large","normal"})
 
 (defn contains_kwd? ;Function which checks whether the input string contains a keyword present in a defined set
 [syn_set str] ;str is string which is parsed, syn_set is the defines set of synonyms against which the string is compared
@@ -601,28 +601,24 @@ city)
             (def amount (+ amount 1)) nil))
     (if (> amount 0) true false))
 
-(def synonyms_yes #{"yes","yeah","yep","mhm","sure"})
-(def synonyms_deciduous #{"deciduous","large","normal"})
+(defn dog_dialogue []
 
-
-(defn dog_tree []
-
-  (println "This part of the chatbot will try to identify the breed of a dog," username ".")
-  (println "By your estimate, was the dog you saw taller than 40 centimeters, or no?") ;layer 1a
+  (println "I will now try to identify a breed of dog by process of elimination," username ".")
+  (println "By your estimate, was the dog you saw taller than 40 centimeters, or not?") ;layer 1a
   (def reply (read-line))
 
   (if
-    (= (contains_kwd? synonyms_yes reply) true)
+    (= (contains_kwd? alt_yes reply) true)
     ((println "Okay, cool. Did the dog resemble a wolf?") ;layer 2a
       (def reply (read-line))
 
       (if
-        (= (contains_kwd? synonyms_yes reply) true)
+        (= (contains_kwd? alt_yes reply) true)
         ((println "Got it. One more question: did it have white or grey fur?") ;layer 3a
           (def reply (read-line))
 
           (if
-            (= (contains_kwd? synonyms_yes reply) true)
+            (= (contains_kwd? alt_yes reply) true)
             (println "It probably was a Siberian husky.") ;finish
             (println "It probably was a German shepherd."))) ;finish
 
@@ -630,13 +626,13 @@ city)
           (def reply (read-line))
 
           (if
-            (= (contains_kwd? synonyms_yes reply) true)
+            (= (contains_kwd? alt_yes reply) true)
             (println "It probably was a poodle.") ;finish
             ((println "One last question. Was its fur short?") ;layer 4a
               (def reply (read-line))
 
               (if
-                (= (contains_kwd? synonyms_yes reply) true)
+                (= (contains_kwd? alt_yes reply) true)
                 (println "It probably was a labrador.") ;finish
                 (println "It probably was a golden retriever."))))))) ;finish
 
@@ -644,67 +640,67 @@ city)
       (def reply (read-line))
 
       (if
-        (= (contains_kwd? synonyms_yes reply) true)
+        (= (contains_kwd? alt_yes reply) true)
         (println "It probably was a Yorkshire terrier.") ;finish
         ((println "Okay, great. One more question: did the dog have a muscular build?") ;layer 3c
           (def reply (read-line))
 
           (if
-            (= (contains_kwd? synonyms_yes reply) true)
+            (= (contains_kwd? alt_yes reply) true)
             (println "It probably was a bulldog.") ;finish
             (println "It probably was a chihuahua."))))))) ;finish
 
-(defn tree_tree []
-
-  (println "This part of the chatbot will try to identify the 8 most common trees in Czech nature," username ".")
-  (println "Is the tree deciduous or coniferous? Coniferous trees have many small, spiky leaves which do not shed in the winter.") ;layer 1a
+(defn tree_dialogue 
+[]
+  (println "This part of the chatbot will, by process of elimination, try to identify the 8 most common trees in Czech nature," username ".")
+  (println "Is the tree deciduous or coniferous? Coniferous trees have small spikes instead of leaves. These spikes do not shed in the winter.") ;layer 1a
   (def reply (read-line))
 
   (if
-    (= (contains_kwd? synonyms_deciduous reply) true)
+    (= (contains_kwd? alt_deciduous reply) true)
     ((println "Is the tree's leaf shown on the Canadian national flag?") ;layer 2a
       (def reply (read-line))
 
       (if
-        (= (contains_kwd? synonyms_yes reply) true)
-        ((println "Ah! That must be a Sycamore Maple tree then, eh?") ;layer 3a
+        (= (contains_kwd? alt_yes reply) true)
+        ((println "Ah! That must be a Sycamore Maple tree then, eh!") ;layer 3a
           (def reply (read-line))) ;finish
 
-        ((println "Got it. Ddoes it have white bark?") ;layer 3b
+        ((println "Got it. Does it have white bark?") ;layer 3b
           (def reply (read-line))
 
           (if
-            (= (contains_kwd? synonyms_yes reply) true)
+            (= (contains_kwd? alt_yes reply) true)
             (println "Must be a Silver Birch!") ;finish
             ((println "Alright, hmmm... Are squirrels known to eat its nuts?") ;layer 4a
               (def reply (read-line))
 
               (if
-                (= (contains_kwd? synonyms_yes reply) true)
+                (= (contains_kwd? alt_yes reply) true)
                 (println "Squirrels like to munch on acorns, which grow on Oak trees. It must be an English Oak!") ;finish
                 (println "Then it is probably a European Beech - their nuts are spikey and thus not very apetizing."))))))) ;finish
 
-    ((println "Alright. Do the tree's leaves have a silver color?") ;layer 2b
+    ((println "Alright. Do the tree's spikes have a silver color?") ;layer 2b
       (def reply (read-line))
 
       (if
-        (= (contains_kwd? synonyms_yes reply) true)
+        (= (contains_kwd? alt_yes reply) true)
         (println "Then that must be a Silver Fir.") ;finish
         ((println "Okay, hmmm...Did the tree have downward facing cones?") ;layer 3c
           (def reply (read-line))
 
           (if
-            (= (contains_kwd? synonyms_yes reply) true)
+            (= (contains_kwd? alt_yes reply) true)
             (println "By my estimation, that is a Norwegian Spruce tree. It is very commonly used as a christmas tree in the Czech Republic!")
             ((println "Okay. Another question about the cones - Are they coloured red?") ;layer 4a
               (def reply (read-line))
 
               (if
-                (= (contains_kwd? synonyms_yes reply) true)
+                (= (contains_kwd? alt_yes reply) true)
                 (println "Red! Then that must be a European Red Pine tree.") ;finish
                 (println "Well, by deduction, it must be a European Larch.")))))))))
 
-(defn dialogue_parks
+(defn park_dialogue
 []
     (println "I know the following parks:")
     (println "1) Bertramka")
@@ -786,9 +782,9 @@ city)
   (println "finished")
 ) 
 
-(defn choices_chatbot ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
+(defn main_loop ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
 [] ; no args
-  (println "Hi, I am a chatbot specialized in Prague parks, dogs and tees. Who are you?") ;1st welcome message
+  (println "Hi, I am a chatbot specialized in Prague parks, dogs and trees. Who are you?") ;1st welcome message
   (def username (read-line))
   (println (str "Nice to meet you, " username "! We can talk about any of the following: "))
   (println "1) Parks in Prague")
@@ -797,9 +793,9 @@ city)
   (println "Which of these would you like to talk about?")
 (loop [user_topic_string (read-line)]
   (cond ;prints user friendly phrase
-           (= user_topic_string "parks") (dialogue_parks)
-           (= user_topic_string "trees") (tree_tree)
-           (= user_topic_string "dogs") (dog_tree))
+           (= user_topic_string "parks") (park_dialogue)
+           (= user_topic_string "trees") (tree_dialogue)
+           (= user_topic_string "dogs") (dog_dialogue))
   (println (str "Nice to meet you, " username "! We can talk about any of the following: "))
   (println "1) Parks in Prague")
   (println "2) Dogs")
@@ -808,4 +804,4 @@ city)
 (recur (read-line)))
 ;   (def username (read-line))
   )
-(choices_chatbot)
+(main_loop)
