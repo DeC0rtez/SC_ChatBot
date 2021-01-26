@@ -525,9 +525,13 @@
 (def alt_stromovka #{"Stromovka","stromovka"})
 (def alt_vysehrad #{"Vysehrad","vysehrad","Vyšehrad","vyšehrad"})
 ;words which will stop the bot
+(def alt_back #{"back", "before"})
 (def alt_stop #{"stop", "goodbye", "bye", "farewell", "end"})
 ;park names for function: which_park?
 (def parks #{"frantiskanska_zahrada", "bertramka", "obora_hvezda", "kampa", "kinskeho_zahrada", "klamovka", "ladronka", "letna", "petrin", "riegrovy_sady", "stromovka", "vysehrad"})
+
+(def alt_yes #{"yes","yeah","yep","mhm","sure"})
+(def alt_deciduous #{"deciduous","large","normal"})
 
 (defn contains_kwd? ;Function which checks whether the input string contains a keyword present in a defined set
 [syn_set str] ;str is string which is parsed, syn_set is the defines set of synonyms against which the string is compared
@@ -567,8 +571,7 @@ city)
     (contains_kwd? alt_administration keyword) (def category :administered_by)
     (contains_kwd? alt_hours keyword) (def category :opening_hours)
     (contains_kwd? alt_map keyword) (def category :map_url)
-    :else (println "This is an incorrect input or a question I cannot answer."))
-  )
+    :else (def category :unrecognized)))
 
 (defn check_cat_bool ;Function which checks the truth value of a bool in park data
 [park bool] ;parameter: park is the park for which bool is being checked(e.g. bertramka). parameter: bool defines which bool is being checked (e.g. :food)
@@ -588,77 +591,229 @@ city)
         (= rn 2) (println (:p2 (p_cat p_coll)))
         :else (println (:p3 (p_cat p_coll)))))
 
+(defn contains_kwd? ;Nikita's function
+[syn_set str]
+    (def lowerStr (string/lower-case str))
+    (def amount 0)
+    (doseq [key syn_set]
+        (if (string/includes? lowerStr key)
+            (def amount (+ amount 1)) nil))
+    (if (> amount 0) true false))
+
+(defn dog_dialogue []
+
+  (println "I will now try to identify a breed of dog by process of elimination," username ".")
+  (println "By your estimate, was the dog you saw taller than 40 centimeters, or not?") ;layer 1a
+  (def reply (read-line))
+
+  (if
+    (= (contains_kwd? alt_yes reply) true)
+    ((println "Okay, cool. Did the dog resemble a wolf?") ;layer 2a
+      (def reply (read-line))
+
+      (if
+        (= (contains_kwd? alt_yes reply) true)
+        ((println "Got it. One more question: did it have white or grey fur?") ;layer 3a
+          (def reply (read-line))
+
+          (if
+            (= (contains_kwd? alt_yes reply) true)
+            (println "It probably was a Siberian husky.") ;finish
+            (println "It probably was a German shepherd."))) ;finish
+
+        ((println "Got it. Did it have curly fur?") ;layer 3b
+          (def reply (read-line))
+
+          (if
+            (= (contains_kwd? alt_yes reply) true)
+            (println "It probably was a poodle.") ;finish
+            ((println "One last question. Was its fur short?") ;layer 4a
+              (def reply (read-line))
+
+              (if
+                (= (contains_kwd? alt_yes reply) true)
+                (println "It probably was a labrador.") ;finish
+                (println "It probably was a golden retriever."))))))) ;finish
+
+    ((println "Alright, got it. Did it have long fur?") ;layer 2b
+      (def reply (read-line))
+
+      (if
+        (= (contains_kwd? alt_yes reply) true)
+        (println "It probably was a Yorkshire terrier.") ;finish
+        ((println "Okay, great. One more question: did the dog have a muscular build?") ;layer 3c
+          (def reply (read-line))
+
+          (if
+            (= (contains_kwd? alt_yes reply) true)
+            (println "It probably was a bulldog.") ;finish
+            (println "It probably was a chihuahua."))))))) ;finish
+
+(defn tree_dialogue 
+[]
+  (println "This part of the chatbot will, by process of elimination, try to identify the 8 most common trees in Czech nature," username ".")
+  (println "Is the tree deciduous or coniferous? Coniferous trees have small spikes instead of leaves. These spikes do not shed in the winter.") ;layer 1a
+  (def reply (read-line))
+
+  (if
+    (= (contains_kwd? alt_deciduous reply) true)
+    ((println "Is the tree's leaf shown on the Canadian national flag?") ;layer 2a
+      (def reply (read-line))
+
+      (if
+        (= (contains_kwd? alt_yes reply) true)
+        ((println "Ah! That must be a Sycamore Maple tree then, eh!") ;layer 3a
+          (def reply (read-line))) ;finish
+
+        ((println "Got it. Does it have white bark?") ;layer 3b
+          (def reply (read-line))
+
+          (if
+            (= (contains_kwd? alt_yes reply) true)
+            (println "Must be a Silver Birch!") ;finish
+            ((println "Alright, hmmm... Are squirrels known to eat its nuts?") ;layer 4a
+              (def reply (read-line))
+
+              (if
+                (= (contains_kwd? alt_yes reply) true)
+                (println "Squirrels like to munch on acorns, which grow on Oak trees. It must be an English Oak!") ;finish
+                (println "Then it is probably a European Beech - their nuts are spikey and thus not very apetizing."))))))) ;finish
+
+    ((println "Alright. Do the tree's spikes have a silver color?") ;layer 2b
+      (def reply (read-line))
+
+      (if
+        (= (contains_kwd? alt_yes reply) true)
+        (println "Then that must be a Silver Fir.") ;finish
+        ((println "Okay, hmmm...Did the tree have downward facing cones?") ;layer 3c
+          (def reply (read-line))
+
+          (if
+            (= (contains_kwd? alt_yes reply) true)
+            (println "By my estimation, that is a Norwegian Spruce tree. It is very commonly used as a christmas tree in the Czech Republic!")
+            ((println "Okay. Another question about the cones - Are they coloured red?") ;layer 4a
+              (def reply (read-line))
+
+              (if
+                (= (contains_kwd? alt_yes reply) true)
+                (println "Red! Then that must be a European Red Pine tree.") ;finish
+                (println "Well, by deduction, it must be a European Larch.")))))))))
+
+(defn park_dialogue
+[]
+    (println "I know the following parks:")
+    (println "1) Bertramka")
+    (println "2) Frantiskanska Zahrada")
+    (println "3) Obora Hvezda")
+    (println "4) Kampa")
+    (println "5) Kinskeho Zahrada")
+    (println "6) Klamovka")
+    (println "7) Ladronka")
+    (println "8) Letna")
+    (println "9) Petrin")
+    (println "10) Riegrovy Sady")
+    (println "11) Stromovka")
+    (println "12) Vysehrad")
+    (println "Which of them would you like to know more about? (Please use the standard english alphabet, I currently do not understand czech letters)")
+    (def user_park_string (read-line))
+ ;getting the park
+    (def identified_park (which_park? parks user_park_string)) ;defines variable identified_park
+    (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end")
+    (def identified_park (resolve (symbol identified_park)))
+    (def exit 0)
+    (loop [input (read-line)] ;takes user input, stores it in variable
+    (if (contains? alt_back input)
+        (do 
+        (println "Thank you for asking"))
+        (do 
+                (if (contains? alt_stop input) ;checks user input, if in set alt_stop, ends loop"
+                (do
+                (println "Thank you and see you next time!") ;prints message if user input is in set alt_stop, no more recursion, ends the loop
+                (System/exit 0))
+                (do
+                (assign_keyword_category input)
+                (check_cat_bool identified_park category)
+                
+
+                (cond ;prints user friendly phrase
+                (and (= category :food) (= checked_bool false)) (get_response phrases_false :food)
+                (and (= category :food) (= checked_bool true)) (get_response phrases_true :food)
+                (and (= category :toilet) (= checked_bool false)) (get_response phrases_false :toilet)
+                (and (= category :toilet) (= checked_bool true)) (get_response phrases_true :toilet)
+                (and (= category :POI) (nil? (identified_park :POI))) (get_response phrases_false :POI)
+                (and (= category :POI) (not (nil? (identified_park :POI)))) (get_response phrases_true :POI)
+                (and (= category :bike_path) (= checked_bool false)) (get_response phrases_false :bike_path)
+                (and (= category :bike_path) (= checked_bool true)) (get_response phrases_true :bike_path)
+                (and (= category :skating) (= checked_bool false)) (get_response phrases_false :skating)
+                (and (= category :skating) (= checked_bool true)) (get_response phrases_true :skating)
+                (and (= category :sports_field) (= checked_bool false)) (get_response phrases_false :sports_field)
+                (and (= category :sports_field) (= checked_bool true)) (get_response phrases_true :sports_field)
+                (and (= category :playground) (= checked_bool false)) (get_response phrases_false :playground)
+                (and (= category :playground) (= checked_bool true)) (get_response phrases_true :playground)
+                (and (= category :public_transport) (nil? (identified_park :public_transport))) (get_response phrases_false :public_transport)
+                (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (get_response phrases_true :public_transport)
+                (and (= category :parking) (= checked_bool false)) (get_response phrases_false :parking)
+                (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
+                (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
+                (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs)
+                (= category :unrecognized) (println "Unfortunately, I did not understand what you meant. Please check your spelling & phrasing and ask again! If you are sure your spelling is right, chances are that I do not know the answer to your question. Yes, I know I am a robot, but even I do not know everything!(yet)"))
+
+                (cond ;prints extra information
+                (and (= category :food) (= checked_bool true) (not (nil? (identified_park :food_extra)))) (println (identified_park :food_extra))
+                (and (= category :toilet) (= checked_bool true) (not (nil? (identified_park :toilet_extra)))) (println (identified_park :toilet_extra))
+                (and (= category :sports_field) (= checked_bool true) (not (nil? (identified_park :sports_field_extra)))) (println (identified_park :sports_field_extra))
+                (and (= category :playground) (= checked_bool true) (not (nil? (identified_park :playground_extra)))) (println (identified_park :playground_extra))
+                (and (= category :parking) (= checked_bool true) (not (nil? (identified_park :parking_extra)))) (println (identified_park :parking_extra))
+                (and (= category :POI) (not (nil? (identified_park :POI)))) (println (identified_park :POI))
+                (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (println "You can reach this park by the following public transport options: " (identified_park :public_transport))
+                (and (= category :GPS_coords) (not (nil? (identified_park :GPS_coords)))) (println "The GPS co-ordinates are: " (identified_park :GPS_coords))
+                (and (= category :path_type) (not (nil? (identified_park :path_type)))) (println "Path types at this park: " (identified_park :path_type))
+                (and (= category :administered_by) (not (nil? (identified_park :administered_by)))) (println "The park is administered by: "(identified_park :administered_by))
+                (and (= category :opening_hours) (not (nil? (identified_park :opening_hours)))) (println "The opening hours are: " (identified_park :opening_hours))
+                (and (= category :map_url) (not (nil? (identified_park :map_url)))) (println "You can find the park map here: "(identified_park :map_url))
+                )
+                (recur (read-line)) ;repeats loop aka recursion, takes new input, repeats process
+            )
+            )
+        )
+    )
+    
+  )
+  (println "finished")
+) 
+
 (defn chatbot ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
 [] ; no args
-  (println "Hi, I am a park guide chatbot specialized in Prague parks. Who are you?") ;1st welcome message
+  (println "Hi, I am a chatbot specialized in Prague parks, dogs and trees. Who are you?") ;1st welcome message
   (def username (read-line))
-  (println (str "Nice to meet you, " username "! I can assist you with the following parks: "))
-  (println "1) Bertramka")
-  (println "2) Frantiskanska Zahrada")
-  (println "3) Obora Hvezda")
-  (println "4) Kampa")
-  (println "5) Kinskeho Zahrada")
-  (println "6) Klamovka")
-  (println "7) Ladronka")
-  (println "8) Letna")
-  (println "9) Petrin")
-  (println "10) Riegrovy Sady")
-  (println "11) Stromovka")
-  (println "12) Vysehrad")
-  (println "Which of them would you like to know more about? (Please use the standard english alphabet, I currently do not understand czech letters)")
-  (def user_park_string (read-line))
- ;getting the park
-  (def identified_park (which_park? parks user_park_string)) ;defines variable identified_park
-  (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end")
-  (def identified_park (resolve (symbol identified_park)))
-  (loop [input (read-line)] ;takes user input, stores it in variable
-    (if (contains? alt_stop input) ;checks user input, if in set alt_stop, ends loop"
-      (do
-         (println "Thank you and see you next time!")) ;prints message if user input is in set alt_stop, no more recursion, ends the loop
-      (do
-        (assign_keyword_category input)
-        (check_cat_bool identified_park category)
-           
-
-        (cond ;prints user friendly phrase
-           (and (= category :food) (= checked_bool false)) (get_response phrases_false :food)
-           (and (= category :food) (= checked_bool true)) (get_response phrases_true :food)
-           (and (= category :toilet) (= checked_bool false)) (get_response phrases_false :toilet)
-           (and (= category :toilet) (= checked_bool true)) (get_response phrases_true :toilet)
-           (and (= category :POI) (nil? (identified_park :POI))) (get_response phrases_false :POI)
-           (and (= category :POI) (not (nil? (identified_park :POI)))) (get_response phrases_true :POI)
-           (and (= category :bike_path) (= checked_bool false)) (get_response phrases_false :bike_path)
-           (and (= category :bike_path) (= checked_bool true)) (get_response phrases_true :bike_path)
-           (and (= category :skating) (= checked_bool false)) (get_response phrases_false :skating)
-           (and (= category :skating) (= checked_bool true)) (get_response phrases_true :skating)
-           (and (= category :sports_field) (= checked_bool false)) (get_response phrases_false :sports_field)
-           (and (= category :sports_field) (= checked_bool true)) (get_response phrases_true :sports_field)
-           (and (= category :playground) (= checked_bool false)) (get_response phrases_false :playground)
-           (and (= category :playground) (= checked_bool true)) (get_response phrases_true :playground)
-           (and (= category :public_transport) (nil? (identified_park :public_transport))) (get_response phrases_false :public_transport)
-           (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (get_response phrases_true :public_transport)
-           (and (= category :parking) (= checked_bool false)) (get_response phrases_false :parking)
-           (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
-           (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
-           (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs))
-
-        (cond ;prints extra information
-           (and (= category :food) (= checked_bool true) (not (nil? (identified_park :food_extra)))) (println (identified_park :food_extra))
-           (and (= category :toilet) (= checked_bool true) (not (nil? (identified_park :toilet_extra)))) (println (identified_park :toilet_extra))
-           (and (= category :sports_field) (= checked_bool true) (not (nil? (identified_park :sports_field_extra)))) (println (identified_park :sports_field_extra))
-           (and (= category :playground) (= checked_bool true) (not (nil? (identified_park :playground_extra)))) (println (identified_park :playground_extra))
-           (and (= category :parking) (= checked_bool true) (not (nil? (identified_park :parking_extra)))) (println (identified_park :parking_extra))
-           (and (= category :POI) (not (nil? (identified_park :POI)))) (println (identified_park :POI))
-           (and (= category :public_transport) (not (nil? (identified_park :public_transport)))) (println "You can reach this park by the following public transport options: " (identified_park :public_transport))
-           (and (= category :GPS_coords) (not (nil? (identified_park :GPS_coords)))) (println "The GPS co-ordinates are: " (identified_park :GPS_coords))
-           (and (= category :path_type) (not (nil? (identified_park :path_type)))) (println "Path types at this park: " (identified_park :path_type))
-           (and (= category :administered_by) (not (nil? (identified_park :administered_by)))) (println "The park is administered by: "(identified_park :administered_by))
-           (and (= category :opening_hours) (not (nil? (identified_park :opening_hours)))) (println "The opening hours are: " (identified_park :opening_hours))
-           (and (= category :map_url) (not (nil? (identified_park :map_url)))) (println "You can find the park map here: "(identified_park :map_url))
-           )
-        (recur (read-line)) ;repeats loop aka recursion, takes new input, repeats process
-      )
-    )
+  (println (str "Nice to meet you, " username "! We can talk about any of the following: "))
+  (println "1) Parks in Prague")
+  (println "2) Dogs")
+  (println "3) Trees")
+  (println "Which of these would you like to talk about?")
+(loop [user_topic_string (read-line)]
+  (cond ;prints user friendly phrase
+           (= user_topic_string "parks") (park_dialogue)
+           (= user_topic_string "Parks") (park_dialogue)
+           (= user_topic_string "park") (park_dialogue)
+           (= user_topic_string "Park") (park_dialogue)
+           (= user_topic_string "1") (park_dialogue)
+           (= user_topic_string "trees") (tree_dialogue)
+           (= user_topic_string "Trees") (tree_dialogue)
+           (= user_topic_string "tree") (tree_dialogue)
+           (= user_topic_string "Tree") (tree_dialogue)
+           (= user_topic_string "2") (tree_dialogue)
+           (= user_topic_string "dogs") (dog_dialogue)
+           (= user_topic_string "Dogs") (dog_dialogue)
+           (= user_topic_string "dog") (dog_dialogue)
+           (= user_topic_string "Dog") (dog_dialogue)
+           (= user_topic_string "3") (dog_dialogue))
+  (println (str "Nice to meet you, " username "! We can talk about any of the following: "))
+  (println "1) Parks in Prague")
+  (println "2) Dogs")
+  (println "3) Trees")
+  (println "Which of these would you like to talk about?")
+(recur (read-line)))
+;   (def username (read-line))
   )
-) 
 (chatbot)
