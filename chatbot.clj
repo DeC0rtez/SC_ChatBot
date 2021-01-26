@@ -571,8 +571,7 @@ city)
     (contains_kwd? alt_administration keyword) (def category :administered_by)
     (contains_kwd? alt_hours keyword) (def category :opening_hours)
     (contains_kwd? alt_map keyword) (def category :map_url)
-    :else (println "This is an incorrect input or a question I cannot answer."))
-  )
+    :else (def category :unrecognized)))
 
 (defn check_cat_bool ;Function which checks the truth value of a bool in park data
 [park bool] ;parameter: park is the park for which bool is being checked(e.g. bertramka). parameter: bool defines which bool is being checked (e.g. :food)
@@ -756,7 +755,8 @@ city)
                 (and (= category :parking) (= checked_bool false)) (get_response phrases_false :parking)
                 (and (= category :parking) (= checked_bool true)) (get_response phrases_true :parking)
                 (and (= category :dogs) (= checked_bool false)) (get_response phrases_false :dogs)
-                (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs))
+                (and (= category :dogs) (= checked_bool true)) (get_response phrases_true :dogs)
+                (= category :unrecognized) (println "Unfortunately, I did not understand what you meant. Please check your spelling & phrasing and ask again! If you are sure your spelling is right, chances are that I do not know the answer to your question. Yes, I know I am a robot, but even I do not know everything!(yet)"))
 
                 (cond ;prints extra information
                 (and (= category :food) (= checked_bool true) (not (nil? (identified_park :food_extra)))) (println (identified_park :food_extra))
@@ -782,7 +782,7 @@ city)
   (println "finished")
 ) 
 
-(defn main_loop ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
+(defn chatbot ;prototype chatbot which has a greeting message, takes user input and based on it returns a response. User input is taken in a loop until 'stop' is typed - then bot stops the loop.
 [] ; no args
   (println "Hi, I am a chatbot specialized in Prague parks, dogs and trees. Who are you?") ;1st welcome message
   (def username (read-line))
@@ -794,8 +794,20 @@ city)
 (loop [user_topic_string (read-line)]
   (cond ;prints user friendly phrase
            (= user_topic_string "parks") (park_dialogue)
+           (= user_topic_string "Parks") (park_dialogue)
+           (= user_topic_string "park") (park_dialogue)
+           (= user_topic_string "Park") (park_dialogue)
+           (= user_topic_string "1") (park_dialogue)
            (= user_topic_string "trees") (tree_dialogue)
-           (= user_topic_string "dogs") (dog_dialogue))
+           (= user_topic_string "Trees") (tree_dialogue)
+           (= user_topic_string "tree") (tree_dialogue)
+           (= user_topic_string "Tree") (tree_dialogue)
+           (= user_topic_string "2") (tree_dialogue)
+           (= user_topic_string "dogs") (dog_dialogue)
+           (= user_topic_string "Dogs") (dog_dialogue)
+           (= user_topic_string "dog") (dog_dialogue)
+           (= user_topic_string "Dog") (dog_dialogue)
+           (= user_topic_string "3") (dog_dialogue))
   (println (str "Nice to meet you, " username "! We can talk about any of the following: "))
   (println "1) Parks in Prague")
   (println "2) Dogs")
@@ -804,4 +816,4 @@ city)
 (recur (read-line)))
 ;   (def username (read-line))
   )
-(main_loop)
+(chatbot)
