@@ -11,6 +11,7 @@
 ## Installation
 * No installation required. 
 * All features of the code can be used directly from a .clj file in a REPL.
+* NOTE: the code was written and tested on Clojure vesion 1.8.0. The "clojure.string/includes?" functionality can be unavailable in older versions of Clojure.
 
 ## Usage
 * To start the chatbot in REPL, run the chatbot_v1.clj file and type: (chatbot) to run the function.
