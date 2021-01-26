@@ -14,7 +14,7 @@
 * NOTE: the code was written and tested on Clojure vesion 1.8.0. The "clojure.string/includes?" functionality can be unavailable in older versions of Clojure.
 
 ## Usage
-* To start the chatbot in REPL, run the chatbot_v1.clj file and type: (chatbot) to run the function.
+* To start the chatbot in REPL, run the chatbot.clj file and type: (chatbot) to run the function.
 * Once the chatbot has taken your name and you have selected a park to ask questions about, you can ask questions about the selected park. The ChatBot will check the input, identify what the user is asking about and generate a coherent response. 
 * To end the conversation with the chatbot by typing one of the following words: end, stop, bye, goodbye and farewell. (works only after username and park have been chosen.)
 
