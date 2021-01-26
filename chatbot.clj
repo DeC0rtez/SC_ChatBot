@@ -607,7 +607,7 @@ city)
 
 (defn dog_tree []
 
-  (println "This part of the chatbot will try to identify the breed of a dog, [username here].")
+  (println "This part of the chatbot will try to identify the breed of a dog," username ".")
   (println "By your estimate, was the dog you saw taller than 40 centimeters, or no?") ;layer 1a
   (def reply (read-line))
 
@@ -656,7 +656,7 @@ city)
 
 (defn tree_tree []
 
-  (println "This part of the chatbot will try to identify the 8 most common trees in Czech nature, [username here].")
+  (println "This part of the chatbot will try to identify the 8 most common trees in Czech nature," username ".")
   (println "Is the tree deciduous or coniferous? Coniferous trees have many small, spiky leaves which do not shed in the winter.") ;layer 1a
   (def reply (read-line))
 
