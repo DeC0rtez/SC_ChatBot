@@ -623,9 +623,11 @@ city)
         (recur (read-line)))
       )
   )
-  
-  
-  (println "Feel free to ask me questions about "  identified_park ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end, exit, quit, terminate")
+  (def identified_park_for_print (string/replace identified_park "_" " "))
+  (def identified_park_for_print (->> (string/split (str identified_park_for_print) #"\b") 
+       (map string/capitalize)
+       string/join))
+  (println "Feel free to ask me questions about "  identified_park_for_print ". If you want to ask about a different park, restart the bot. To end this conversation, type one of: goodbye, bye, stop, farewell, end, exit, quit, terminate")
   (def identified_park (resolve (symbol identified_park)))
   (loop [input (read-line)] ;takes user input, stores it in variable
     (if (contains? alt_stop input) ;checks user input, if in set alt_stop, ends loop"
